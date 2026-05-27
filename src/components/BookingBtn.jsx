@@ -1,16 +1,23 @@
-
 "use client";
 import { toast } from "@heroui/react";
 import { authClient, useSession } from "@/lib/auth-client";
-import { Button, Input, Modal, Select } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@/providers/ThemeProvider";
+import { useState } from "react";
+import { FaMapMarkerAlt, FaCalendar, FaClock, FaShieldAlt } from "react-icons/fa";
 
 export default function BookingModal({ car }) {
-    const { data, isPending } = useSession();
+    const { data } = useSession();
     const router = useRouter();
+    const { theme, mounted } = useTheme();
+    const isLight = theme === "light";
+    const [isOpen, setIsOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleBooking = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+
         const today = new Date();
         const currentDate = today.toLocaleDateString();
         const todayTime = new Date();
@@ -28,15 +35,15 @@ export default function BookingModal({ car }) {
             userId,
             ...formData,
         }
-          
+
         try {
-            const {data:tokenData} = await authClient.token();
-                  const token = tokenData.token;
+            const { data: tokenData } = await authClient.token();
+            const token = tokenData.token;
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    authorization : `Bearer ${token}`
+                    authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(bookingData),
             });
@@ -50,121 +57,174 @@ export default function BookingModal({ car }) {
                         className: "bg-success text-success-foreground",
                     },
                     description: "Checking your Bookings At Booking Page",
-                })
+                });
+                setIsOpen(false);
+                setTimeout(() => { router.push("/my-bookings"); }, 1000);
             }
-
-            setTimeout(() => { router.push("/my-bookings"); }, 1000);
-
         } catch (error) {
-
             console.log(error);
+            toast.error("Booking failed. Please try again.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
+    if (!mounted) return null;
+
     return (
-
-        <Modal>
-
-            <Button className="bg-orange-500 text-white font-semibold rounded-full w-full">
+        <>
+            {/* Book Now Button */}
+            <button
+                onClick={() => setIsOpen(true)}
+                className={`w-full rounded-xl py-3.5 text-sm font-bold uppercase tracking-wider transition-colors ${isLight
+                        ? 'bg-teal-600 text-white hover:bg-teal-700'
+                        : 'bg-teal-500 text-white hover:bg-teal-600'
+                    }`}
+            >
                 Book Now
-            </Button>
+            </button>
 
-            <Modal.Backdrop>
+            {/* Modal */}
+            {isOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+                    {/* Backdrop */}
+                    <div
+                        className="fixed inset-0 bg-black/60"
+                        onClick={() => setIsOpen(false)}
+                    />
 
-                <Modal.Container>
-
-                    <Modal.Dialog className="sm:max-w-[500px] bg-black text-white border border-zinc-800 rounded-3xl shadow-2xl shadow-orange-500/80">
-
-                        <Modal.CloseTrigger />
-
-                        <Modal.Header>
-
-                            <div>
-
-                                <p className="text-xs uppercase tracking-[4px] text-orange-500">
-                                    Booking Form
-                                </p>
-
-                                <Modal.Heading className="text-3xl font-bold mt-2 text-white my-4">
-                                    {car?.carName}
-                                </Modal.Heading>
-
+                    {/* Modal Container */}
+                    <div className={`relative w-full max-w-md rounded-2xl shadow-xl ${isLight ? 'bg-white' : 'bg-gray-900'
+                        }`}>
+                        {/* Header */}
+                        <div className={`p-5 border-b ${isLight ? 'border-gray-200' : 'border-gray-800'
+                            }`}>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-teal-600' : 'text-teal-400'
+                                        }`}>
+                                        Booking Form
+                                    </p>
+                                    <h3 className={`text-xl font-bold mt-1 ${isLight ? 'text-gray-900' : 'text-white'
+                                        }`}>
+                                        {car?.carName}
+                                    </h3>
+                                </div>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className={`w-7 h-7 rounded-full flex items-center justify-center ${isLight
+                                            ? 'hover:bg-gray-100 text-gray-500'
+                                            : 'hover:bg-gray-800 text-gray-400'
+                                        }`}
+                                >
+                                    ✕
+                                </button>
                             </div>
+                        </div>
 
-                        </Modal.Header>
+                        {/* Car Details Summary */}
+                        <div className={`p-5 border-b ${isLight ? 'border-gray-200' : 'border-gray-800'
+                            }`}>
+                            <div className="flex gap-3">
+                                <img
+                                    src={car?.imageUrl}
+                                    alt={car?.carName}
+                                    className="w-16 h-16 rounded-lg object-cover"
+                                />
+                                <div className="flex-1">
+                                    <div className="flex items-center gap-1.5 mb-1">
+                                        <FaMapMarkerAlt className={`text-xs ${isLight ? 'text-teal-600' : 'text-teal-400'
+                                            }`} />
+                                        <span className={`text-xs ${isLight ? 'text-gray-600' : 'text-gray-400'
+                                            }`}>
+                                            {car?.pickupLocation}
+                                        </span>
+                                    </div>
+                                    <div className="flex items-baseline gap-1">
+                                        <span className={`text-xl font-bold ${isLight ? 'text-teal-600' : 'text-teal-400'
+                                            }`}>
+                                            ${car?.dailyRentPrice}
+                                        </span>
+                                        <span className={`text-sm ${isLight ? 'text-gray-500' : 'text-gray-500'
+                                            }`}>
+                                            / day
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        {/* Form */}
                         <form onSubmit={handleBooking}>
-
-                            <Modal.Body className="space-y-5">
-
-                                <div className="space-y-2">
-
-                                    <label className="text-sm text-zinc-400">
+                            <div className="p-5 space-y-4">
+                                {/* Driver Needed */}
+                                <div>
+                                    <label className={`block text-sm font-medium mb-1.5 ${isLight ? 'text-gray-700' : 'text-gray-300'
+                                        }`}>
                                         Driver Needed
                                     </label>
-
                                     <select
                                         name="driverNeeded"
-                                        className="w-full rounded-xl border border-zinc-700 bg-black px-4 py-3 outline-none focus:border-orange-500"
+                                        className={`w-full rounded-lg border px-3 py-2.5 text-sm outline-none ${isLight
+                                                ? 'border-gray-300 bg-gray-50 text-gray-900 focus:border-teal-500'
+                                                : 'border-gray-700 bg-gray-800 text-white focus:border-teal-500'
+                                            }`}
                                         defaultValue="No"
                                     >
-                                        <option value="No">
-                                            No
-                                        </option>
-
-                                        <option value="Yes">
-                                            Yes
-                                        </option>
-
+                                        <option value="No">No, I'll drive myself</option>
+                                        <option value="Yes">Yes, I need a driver (+$30/day)</option>
                                     </select>
-
                                 </div>
 
-                                <div className="space-y-2">
-
-                                    <label className="text-sm text-zinc-400">
+                                {/* Special Note */}
+                                <div>
+                                    <label className={`block text-sm font-medium mb-1.5 ${isLight ? 'text-gray-700' : 'text-gray-300'
+                                        }`}>
                                         Special Note
                                     </label>
-
                                     <textarea
                                         name="specialNote"
-                                        placeholder="Optional trip details..."
-                                        rows={4}
-                                        className="w-full rounded-xl border border-zinc-700 bg-black px-4 py-3 outline-none focus:border-orange-500"
+                                        placeholder="Optional: Add any special requests..."
+                                        rows={3}
+                                        className={`w-full rounded-lg border px-3 py-2.5 text-sm outline-none resize-none ${isLight
+                                                ? 'border-gray-300 bg-gray-50 text-gray-900 focus:border-teal-500 placeholder:text-gray-400'
+                                                : 'border-gray-700 bg-gray-800 text-white focus:border-teal-500 placeholder:text-gray-500'
+                                            }`}
                                     />
-
                                 </div>
 
-                            </Modal.Body>
+                                {/* Booking Summary */}
+                                
+                            </div>
 
-                            <Modal.Footer>
-
-                                <Button
-                                    variant="light"
-                                    slot="close"
+                            {/* Footer */}
+                            <div className={`p-5 border-t flex gap-3 ${isLight ? 'border-gray-200' : 'border-gray-800'
+                                }`}>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsOpen(false)}
+                                    className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${isLight
+                                            ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                            : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                                        }`}
                                 >
                                     Cancel
-                                </Button>
-
-                                <Button
+                                </button>
+                                <button
                                     type="submit"
-                                    className="bg-orange-500 text-white font-semibold"
-                                    slot="close"
+                                    disabled={isSubmitting}
+                                    className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isLight
+                                            ? 'bg-teal-600 text-white hover:bg-teal-700'
+                                            : 'bg-teal-500 text-white hover:bg-teal-600'
+                                        }`}
                                 >
-                                    Book Now
-                                </Button>
-
-                            </Modal.Footer>
-
+                                    {isSubmitting ? 'Booking...' : 'Confirm'}
+                                </button>
+                            </div>
                         </form>
-
-                    </Modal.Dialog>
-
-                </Modal.Container>
-
-            </Modal.Backdrop>
-
-        </Modal>
+                    </div>
+                </div>
+            )}
+        </>
     );
 }
-

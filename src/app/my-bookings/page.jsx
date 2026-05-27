@@ -5,30 +5,35 @@ import { MapPin, Calendar } from "@gravity-ui/icons";
 import { getBookings } from "@/lib/data";
 import { authClient, useSession } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/providers/ThemeProvider";
+import { FaCar, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 
 // Shimmering Row Skeleton Component for bookings
-const BookingRowSkeleton = () => (
-  <div className="flex flex-col gap-6 rounded-[28px] border border-zinc-900 bg-[#0a0a0a] p-5 shadow-2xl md:flex-row md:items-center md:justify-between">
+const BookingRowSkeleton = ({ isLight }) => (
+  <div className={`flex flex-col gap-6 rounded-2xl border p-5 shadow-lg md:flex-row md:items-center md:justify-between transition-colors duration-300 ${isLight ? 'border-gray-200 bg-white' : 'border-zinc-900 bg-[#0a0a0a]'
+    }`}>
     <div className="flex flex-col gap-5 md:flex-row md:items-center w-full">
-      {/* Car Image Placeholder */}
-      <div className="relative h-[120px] w-full rounded-[20px] shimmer md:w-[220px]" />
-      
-      {/* Details Placeholder */}
+      <div className={`relative h-[120px] w-full rounded-xl shimmer md:w-[220px] ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+        }`} />
       <div className="flex-1 space-y-3">
-        <div className="h-7 w-48 rounded-lg shimmer" />
+        <div className={`h-7 w-48 rounded-lg shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+          }`} />
         <div className="space-y-2 mt-2">
-          <div className="h-4 w-32 rounded shimmer" />
-          <div className="h-4 w-40 rounded shimmer" />
+          <div className={`h-4 w-32 rounded shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+            }`} />
+          <div className={`h-4 w-40 rounded shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+            }`} />
         </div>
       </div>
     </div>
-    {/* Price Placeholder */}
-    <div className="h-14 w-28 rounded-2xl shimmer md:self-center self-end" />
+    <div className={`h-14 w-28 rounded-xl shimmer md:self-center self-end ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+      }`} />
   </div>
 );
 
 export default function MyBookingsPage() {
+  const { theme, mounted } = useTheme();
+  const isLight = theme === "light";
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const { data, useSessionLoading } = useSession();
@@ -53,145 +58,158 @@ export default function MyBookingsPage() {
     fetchBookings();
   }, [userId]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
-  };
+  if (!mounted) return null;
 
   return (
-    <section className="relative min-h-screen w-full bg-[#050505] px-6 py-20 text-white md:px-12 lg:px-20 lg:py-28 overflow-hidden">
+    <section className={`relative min-h-screen w-full px-6 py-20 md:px-12 lg:px-20 lg:py-28 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
+      }`}>
       {/* Visual lighting glows */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className={`absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+        }`} />
+      <div className={`absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
+        }`} />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Heading */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <span className="text-xs font-bold uppercase tracking-[0.35em] text-orange-500 block mb-3">
-            Elite Reservations
+        <div className="mb-12">
+          <span className={`text-xs font-bold uppercase tracking-[0.35em] block mb-3 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
+            }`}>
+            My Reservations
           </span>
-          <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl text-white">
+          <h1 className={`text-4xl font-extrabold tracking-tight md:text-5xl transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+            }`}>
             My Bookings
           </h1>
-          <div className="h-1 w-20 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full my-3" />
-        </motion.div>
+          <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full my-3" />
+          <p className={`text-base mt-2 transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-gray-400'
+            }`}>
+            Manage and track your premium vehicle reservations
+          </p>
+        </div>
 
         {/* Booking Cards Stack */}
-        <AnimatePresence mode="wait">
-          {loading || useSessionLoading ? (
-            /* Loading list */
-            <motion.div 
-              key="loading-list"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="space-y-6"
-            >
-              {Array.from({ length: 3 }).map((_, index) => (
-                <BookingRowSkeleton key={index} />
-              ))}
-            </motion.div>
-          ) : bookings.length === 0 ? (
-            /* Elegant empty state */
-            <motion.div 
-              key="empty-list"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              className="rounded-[30px] border border-zinc-900 bg-[#080808] p-16 text-center max-w-xl mx-auto shadow-2xl"
-            >
-              <div className="h-16 w-16 rounded-full border border-orange-500/20 bg-orange-500/10 flex items-center justify-center mx-auto mb-6">
-                <Calendar className="h-6 w-6 text-orange-500" />
-              </div>
-              <h2 className="text-2xl font-bold mb-2">No active bookings</h2>
-              <p className="text-zinc-500 text-sm max-w-sm mx-auto leading-relaxed mb-6">
-                You haven't reserved any premium vehicles yet. View our outstanding fleet to schedule your first premium ride.
-              </p>
-            </motion.div>
-          ) : (
-            /* Staggered animated rows */
-            <motion.div 
-              key="bookings-list"
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-              className="space-y-6"
-            >
-              {bookings.map((booking, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ y: -4, borderColor: "rgba(249, 115, 22, 0.35)", boxShadow: "0 10px 30px rgba(249, 115, 22, 0.05)" }}
-                  className="flex flex-col gap-6 rounded-[28px] border border-zinc-900 bg-[#080808] p-5 shadow-2xl transition-all duration-300 md:flex-row md:items-center md:justify-between"
-                >
-                  {/* Left */}
-                  <div className="flex flex-col gap-5 md:flex-row md:items-center">
-                    {/* Car Image with zoom */}
-                    <div className="relative h-[120px] w-full overflow-hidden rounded-[20px] md:w-[220px]">
-                      <Image
-                        src={booking.imageUrl}
-                        alt={booking.carName}
-                        fill
-                        className="object-cover transition duration-700 hover:scale-105"
-                        unoptimized
-                      />
-                    </div>
+        {loading || useSessionLoading ? (
+          <div className="space-y-5">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <BookingRowSkeleton key={index} isLight={isLight} />
+            ))}
+          </div>
+        ) : bookings.length === 0 ? (
+          /* Empty state */
+          <div className={`rounded-2xl border p-12 text-center max-w-lg mx-auto transition-colors duration-300 ${isLight
+              ? 'border-gray-200 bg-white'
+              : 'border-zinc-900 bg-[#080808]'
+            }`}>
+            <div className={`w-16 h-16 rounded-full border flex items-center justify-center mx-auto mb-5 transition-colors duration-300 ${isLight
+                ? 'border-teal-500/20 bg-teal-500/10'
+                : 'border-teal-500/20 bg-teal-500/10'
+              }`}>
+              <FaCar className={`h-6 w-6 ${isLight ? 'text-teal-600' : 'text-teal-500'}`} />
+            </div>
+            <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+              }`}>
+              No Active Bookings
+            </h2>
+            <p className={`text-sm max-w-sm mx-auto leading-relaxed mb-6 transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-gray-500'
+              }`}>
+              You haven't reserved any premium vehicles yet. Browse our exclusive fleet to schedule your first ride.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-5">
+            {bookings.map((booking, index) => (
+              <div
+                key={index}
+                className={`flex flex-col gap-5 rounded-2xl border p-5 shadow-md transition-all duration-300 hover:shadow-lg md:flex-row md:items-center md:justify-between ${isLight
+                    ? 'border-gray-200 bg-white hover:shadow-gray-300'
+                    : 'border-zinc-900 bg-[#080808] hover:shadow-zinc-800'
+                  }`}
+              >
+                {/* Left Section */}
+                <div className="flex flex-col gap-4 md:flex-row md:items-center flex-1">
+                  {/* Car Image */}
+                  <div className="relative h-[100px] w-full overflow-hidden rounded-xl md:w-[180px]">
+                    <Image
+                      src={booking.imageUrl}
+                      alt={booking.carName}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
 
-                    {/* Content */}
-                    <div>
-                      <h2 className="mb-3 text-2xl font-bold tracking-tight text-white line-clamp-1">
-                        {booking.carName}
-                      </h2>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className={`text-xl font-bold tracking-tight mb-2 line-clamp-1 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+                      }`}>
+                      {booking.carName}
+                    </h3>
 
-                      <div className="space-y-2.5">
-                        {/* Location */}
-                        <div className="flex items-center gap-2 text-zinc-400">
-                          <MapPin className="h-4 w-4 text-orange-500/80" />
-                          <span className="text-sm font-light">
-                            {booking.pickupLocation}
-                          </span>
-                        </div>
+                    <div className="space-y-1.5">
+                      {/* Location */}
+                      <div className="flex items-center gap-2">
+                        <FaMapMarkerAlt className={`h-3.5 w-3.5 ${isLight ? 'text-teal-600' : 'text-teal-500'
+                          }`} />
+                        <span className={`text-sm transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-gray-400'
+                          }`}>
+                          {booking.pickupLocation}
+                        </span>
+                      </div>
 
-                        {/* Date */}
-                        <div className="flex items-center gap-2 text-zinc-400">
-                          <Calendar className="h-4 w-4 text-orange-500/80" />
-                          <span className="text-sm font-light">
-                            {booking.currentDate} at {booking.currentTime}
-                          </span>
-                        </div>
+                      {/* Date & Time */}
+                      <div className="flex items-center gap-2">
+                        <FaClock className={`h-3.5 w-3.5 ${isLight ? 'text-teal-600' : 'text-teal-500'
+                          }`} />
+                        <span className={`text-sm transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-gray-400'
+                          }`}>
+                          {booking.currentDate} at {booking.currentTime}
+                        </span>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Price column with glowing container */}
-                  <div className="flex items-center justify-end">
-                    <div className="rounded-2xl border border-orange-500/20 bg-orange-500/5 px-6 py-4 shadow-[0_0_15px_rgba(249,115,22,0.05)]">
-                      <span className="text-3xl font-black tracking-tight text-orange-400">
+                {/* Price Section */}
+                <div className="flex items-center justify-between md:justify-end">
+                  <div className={`rounded-xl border px-5 py-3 transition-colors duration-300 ${isLight
+                      ? 'border-teal-500/20 bg-teal-500/5'
+                      : 'border-teal-500/20 bg-teal-500/5'
+                    }`}>
+                    <div className="flex items-baseline gap-0.5">
+                      <span className={`text-2xl font-black tracking-tight ${isLight ? 'text-teal-600' : 'text-teal-400'
+                        }`}>
                         ${booking.dailyPrice}
+                      </span>
+                      <span className={`text-xs transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-gray-500'
+                        }`}>
+                        /day
                       </span>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {/* Add shimmer animation styles */}
+      <style jsx global>{`
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        .shimmer {
+          animation: shimmer 2s infinite linear;
+          background: linear-gradient(
+            to right,
+            ${isLight ? '#f0f0f0' : '#1a1a1a'} 4%,
+            ${isLight ? '#e0e0e0' : '#2a2a2a'} 25%,
+            ${isLight ? '#f0f0f0' : '#1a1a1a'} 36%
+          );
+          background-size: 1000px 100%;
+        }
+      `}</style>
     </section>
   );
 }
