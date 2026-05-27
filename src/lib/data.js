@@ -4,7 +4,6 @@ const data = await fetch(
   `${process.env.NEXT_PUBLIC_API_URL}/cars${search ? `?search=${search}` : ""}`,
 );
   const car = await data.json()
-  console.log(car)
   return car
 }
 
