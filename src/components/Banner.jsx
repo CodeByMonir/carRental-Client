@@ -17,7 +17,7 @@ export default function Banner() {
                 ? "bg-gradient-to-r from-teal-600 to-teal-800"
                 : "bg-gradient-to-r from-gray-900 to-gray-950"
             }`}>
-            {/* Animated Background Pattern */}
+                
             <div className="absolute inset-0 opacity-10">
                 <motion.div
                     animate={{
@@ -45,7 +45,6 @@ export default function Banner() {
                 />
             </div>
 
-            {/* Gradient Overlay for better text contrast */}
             <div className={`absolute inset-0 ${isLight
                     ? "bg-gradient-to-r from-teal-900/20 to-teal-800/20"
                     : "bg-gradient-to-r from-black/50 to-gray-950/50"
@@ -53,14 +52,13 @@ export default function Banner() {
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
                 <div className="text-center md:text-left md:flex md:items-center md:justify-between">
-                    {/* Left Content */}
+                    
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         className="md:w-1/2"
                     >
-                        {/* Badge */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -110,7 +108,6 @@ export default function Banner() {
                             </Link>
                         </div>
 
-                        {/* Stats Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +129,6 @@ export default function Banner() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Right Image Section */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -140,7 +136,6 @@ export default function Banner() {
                         className="hidden md:block md:w-1/2 mt-10 md:mt-0"
                     >
                         <div className="relative">
-                            {/* Main Image */}
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                                 <img
                                     src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&h=450&fit=crop"
@@ -153,7 +148,6 @@ export default function Banner() {
                                     }`} />
                             </div>
 
-                            {/* Floating Card 1 - Rating */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8, x: -20 }}
                                 animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -172,7 +166,6 @@ export default function Banner() {
                                 </div>
                             </motion.div>
 
-                            {/* Floating Card 2 - Price */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8, x: 20 }}
                                 animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -188,7 +181,6 @@ export default function Banner() {
                                 </div>
                             </motion.div>
 
-                            {/* Floating Card 3 - Features */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -215,7 +207,6 @@ export default function Banner() {
                 </div>
             </div>
 
-            {/* Bottom Wave Divider */}
             <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
                 <svg className="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"

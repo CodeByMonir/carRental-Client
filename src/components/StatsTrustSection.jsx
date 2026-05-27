@@ -63,7 +63,7 @@ export default function StatsTrustSection() {
         ? 'bg-gradient-to-b from-gray-50 to-white border-t border-gray-200'
         : 'bg-[#050505] border-t border-zinc-900/60'
       }`}>
-      {/* Ambient glow effects */}
+        
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-600/5'
         }`} />
 
@@ -74,7 +74,6 @@ export default function StatsTrustSection() {
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Header Section */}
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -102,7 +101,6 @@ export default function StatsTrustSection() {
           </motion.div>
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
             <motion.div
@@ -117,13 +115,12 @@ export default function StatsTrustSection() {
                   : 'bg-zinc-950/40 border border-zinc-900 hover:border-teal-500/30 backdrop-blur-sm'
                 }`}
             >
-              {/* Icon Container */}
+              
               <div className={`relative h-16 w-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 ${stat.bgColor} ${stat.borderColor} border`}>
                 <stat.icon className={`h-7 w-7 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
                   }`} />
               </div>
 
-              {/* Count-Up Number */}
               <div className="flex items-baseline gap-1">
                 <span className={`text-5xl font-black tracking-tight transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
                   }`}>
@@ -136,26 +133,22 @@ export default function StatsTrustSection() {
                 </span>
               </div>
 
-              {/* Label */}
               <span className={`text-sm font-bold mt-3 mb-2 transition-colors duration-300 ${isLight ? 'text-gray-800' : 'text-zinc-200'
                 }`}>
                 {stat.label}
               </span>
 
-              {/* Description */}
               <p className={`text-xs font-light leading-relaxed transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-zinc-500'
                 }`}>
                 {stat.description}
               </p>
 
-              {/* Decorative line on hover */}
               <div className={`absolute bottom-0 left-8 right-8 h-0.5 rounded-full transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${isLight ? 'bg-gradient-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0' : 'bg-gradient-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0'
                 }`} />
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom Trust Badges */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -51,7 +51,6 @@ export default function UpdateCarModal({ car }) {
 
   return (
     <>
-      {/* Update Button */}
       <button
         onClick={() => setOpen(true)}
         className="rounded-full border border-orange-500/20 bg-orange-500 px-5 py-2 text-sm font-semibold text-white transition hover:scale-105 hover:bg-orange-600"
@@ -59,12 +58,11 @@ export default function UpdateCarModal({ car }) {
         Update
       </button>
 
-      {/* Modal */}
       {open && (
         <div className="fixed inset-0 mx-auto z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
           {/* Modal Box */}
           <div className="relative max-h-[95vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-orange-500/10 bg-[#0b0b0b] p-6 text-white shadow-[0_0_80px_rgba(249,115,22,0.15)] md:p-10 mb-20">
-            {/* Close Button */}
+          
             <button
               onClick={() => setOpen(false)}
               className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 transition hover:border-orange-500 hover:text-orange-400"
@@ -72,7 +70,7 @@ export default function UpdateCarModal({ car }) {
               <IoClose className="text-xl" />
             </button>
 
-            {/* Heading */}
+
             <div className="mb-10">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-orange-400">
                 Update Listing
@@ -88,9 +86,9 @@ export default function UpdateCarModal({ car }) {
               </p>
             </div>
 
-            {/* Form */}
+
             <form onSubmit={handleUpdate} className="space-y-6">
-              {/* Car Name */}
+              
                 <div>
               <label className="mb-3 block text-sm font-semibold text-white">
                 Car Name
@@ -105,7 +103,7 @@ export default function UpdateCarModal({ car }) {
                 className="h-16 w-full rounded-2xl border border-zinc-800 bg-zinc-900 px-5 text-white outline-none transition placeholder:text-zinc-500 focus:border-orange-500/50"
               />
             </div>
-              {/* Price */}
+            
               <div>
                 <label className="mb-3 block text-sm font-semibold text-white">
                   Daily Rent Price
@@ -120,7 +118,6 @@ export default function UpdateCarModal({ car }) {
                 />
               </div>
 
-              {/* Car Type */}
               <div>
                 <label className="mb-3 block text-sm font-semibold text-white">
                   Car Type
@@ -139,7 +136,6 @@ export default function UpdateCarModal({ car }) {
                 </select>
               </div>
 
-              {/* Image URL */}
               <div>
                 <label className="mb-3 block text-sm font-semibold text-white">
                   Image URL
@@ -153,7 +149,6 @@ export default function UpdateCarModal({ car }) {
                   className="h-14 w-full rounded-2xl border border-zinc-800 bg-zinc-900 px-5 text-white outline-none transition focus:border-orange-500"
                 />
               </div>
-               {/* Seat Capacity */}
             <div>
               <label className="mb-3 block text-sm font-semibold text-white">
                 Seat Capacity
@@ -170,7 +165,6 @@ export default function UpdateCarModal({ car }) {
             </div>
               
 
-              {/* Pickup Location */}
               <div>
                 <label className="mb-3 block text-sm font-semibold text-white">
                   Pickup Location
@@ -185,7 +179,6 @@ export default function UpdateCarModal({ car }) {
                 />
               </div>
 
-              {/* Description */}
               <div>
                 <label className="mb-3 block text-sm font-semibold text-white">
                   Description
@@ -200,7 +193,6 @@ export default function UpdateCarModal({ car }) {
                 />
               </div>
 
-              {/* Status */}
               <div>
                 <label className="mb-3 block text-sm font-semibold text-white">
                   Availability Status
@@ -216,7 +208,6 @@ export default function UpdateCarModal({ car }) {
                 </select>
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 className="h-14 w-full rounded-2xl bg-orange-500 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-orange-600"

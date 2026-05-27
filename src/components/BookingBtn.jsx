@@ -10,10 +10,6 @@ export default function BookingModal({ car }) {
     const router = useRouter();
 
     const handleBooking = async (e) => {
-
-
-        
-
         e.preventDefault();
         const today = new Date();
         const currentDate = today.toLocaleDateString();
@@ -69,7 +65,6 @@ export default function BookingModal({ car }) {
 
         <Modal>
 
-            {/* OPEN BUTTON */}
             <Button className="bg-orange-500 text-white font-semibold rounded-full w-full">
                 Book Now
             </Button>
@@ -80,10 +75,8 @@ export default function BookingModal({ car }) {
 
                     <Modal.Dialog className="sm:max-w-[500px] bg-black text-white border border-zinc-800 rounded-3xl shadow-2xl shadow-orange-500/80">
 
-                        {/* CLOSE BUTTON */}
                         <Modal.CloseTrigger />
 
-                        {/* HEADER */}
                         <Modal.Header>
 
                             <div>
@@ -100,15 +93,10 @@ export default function BookingModal({ car }) {
 
                         </Modal.Header>
 
-                        {/* FORM */}
                         <form onSubmit={handleBooking}>
 
                             <Modal.Body className="space-y-5">
 
-
-
-
-                                {/* DRIVER NEEDED */}
                                 <div className="space-y-2">
 
                                     <label className="text-sm text-zinc-400">
@@ -132,7 +120,6 @@ export default function BookingModal({ car }) {
 
                                 </div>
 
-                                {/* SPECIAL NOTE */}
                                 <div className="space-y-2">
 
                                     <label className="text-sm text-zinc-400">
@@ -150,7 +137,6 @@ export default function BookingModal({ car }) {
 
                             </Modal.Body>
 
-                            {/* FOOTER */}
                             <Modal.Footer>
 
                                 <Button

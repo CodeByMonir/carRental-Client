@@ -47,18 +47,15 @@ export default function HowItWorksSection() {
   return (
     <section className={`relative w-full px-6 py-20 md:px-12 lg:px-20 lg:py-28 overflow-hidden transition-colors duration-300 ${isLight ? "bg-gray-50" : "bg-[#050505]"
       }`}>
-      {/* Background connector line (desktop) */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block w-[55%] h-px pointer-events-none transition-colors duration-300 ${isLight ? "bg-linear-to-r from-transparent via-teal-500/20 to-transparent" : "bg-linear-to-r from-transparent via-teal-500/15 to-transparent"
         }`} />
 
-      {/* Ambient glow effects */}
       <div className={`absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? "bg-teal-500/10" : "bg-teal-600/5"
         }`} />
       <div className={`absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none transition-colors duration-300 ${isLight ? "bg-blue-500/10" : "bg-blue-600/5"
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Heading */}
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -83,7 +80,6 @@ export default function HowItWorksSection() {
           </motion.div>
         </div>
 
-        {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {steps.map((step, idx) => (
             <motion.div
@@ -98,7 +94,7 @@ export default function HowItWorksSection() {
                   : 'bg-zinc-950/50 border border-zinc-900 hover:border-teal-500/30'
                 }`}
             >
-              {/* Step number badge and icon */}
+              
               <div className="flex items-start justify-between">
                 <div className={`relative h-16 w-16 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${step.bgColor} ${step.borderColor} border`}>
                   <step.icon className={`h-7 w-7 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
@@ -121,7 +117,6 @@ export default function HowItWorksSection() {
                 </p>
               </div>
 
-              {/* Learn more link */}
               <div className="mt-4">
                 <button className={`group inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-300 ${isLight ? 'text-teal-600 hover:text-teal-700' : 'text-teal-500 hover:text-teal-400'
                   }`}>
@@ -132,11 +127,9 @@ export default function HowItWorksSection() {
                 </button>
               </div>
 
-              {/* Decorative gradient line at bottom */}
               <div className={`absolute bottom-0 left-8 right-8 h-0.5 rounded-full transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${isLight ? 'bg-gradient-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0' : 'bg-gradient-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0'
                 }`} />
 
-              {/* Connector arrow for desktop */}
               {idx < steps.length - 1 && (
                 <div className={`hidden lg:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full border transition-colors duration-300 ${isLight
                     ? 'border-teal-500/20 bg-white text-teal-600'
@@ -151,7 +144,6 @@ export default function HowItWorksSection() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

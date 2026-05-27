@@ -66,18 +66,14 @@ export default function Footer() {
           : "bg-gradient-to-b from-gray-950 to-black"
         }`}
     >
-      {/* Decorative top border glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/50 to-transparent" />
 
-      {/* Background pattern */}
       <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? "bg-[radial-gradient(#0D9488_1px,transparent_1px)] [background-size:20px_20px]" : "bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:px-10 lg:px-20">
-        {/* Top Section with Newsletter */}
         <div className={`grid gap-12 lg:grid-cols-5 mb-12 pb-12 border-b transition-colors duration-300 ${isLight ? "border-gray-200" : "border-gray-800"
           }`}>
-          {/* Brand Section - Larger */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block group">
               <div className="flex items-center gap-2 mb-4">
@@ -91,7 +87,7 @@ export default function Footer() {
                 </div>
                 <h2 className={`text-2xl font-black tracking-tight transition-colors duration-300 ${isLight ? "text-gray-900" : "text-white"
                   }`}>
-                  Rent<span className="text-teal-500">Wheels</span>
+                  Rent<span className="text-teal-500">Cars</span>
                 </h2>
               </div>
             </Link>
@@ -101,7 +97,6 @@ export default function Footer() {
               Experience the pinnacle of automotive luxury. Our curated fleet of premium vehicles delivers unparalleled performance, style, and comfort for discerning drivers worldwide.
             </p>
 
-            {/* Trust Badges */}
             <div className="flex flex-wrap gap-4 mb-6">
               <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold ${isLight ? "bg-gray-100 text-gray-700" : "bg-gray-900 text-gray-300"
                 }`}>
@@ -117,7 +112,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Socials */}
             <div>
               <h3 className={`text-xs font-semibold uppercase tracking-wider mb-3 ${isLight ? "text-gray-500" : "text-gray-500"
                 }`}>
@@ -144,7 +138,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Sections */}
           <div>
             <h3 className={`text-sm font-bold uppercase tracking-wider mb-5 transition-colors duration-300 ${isLight ? "text-gray-800" : "text-white"
               }`}>
@@ -206,7 +199,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Middle Section - Newsletter */}
         <div className={`py-8 mb-8 border-b transition-colors duration-300 ${isLight ? "border-gray-200" : "border-gray-800"
           }`}>
           <div className="grid md:grid-cols-2 gap-6 items-center">
@@ -241,7 +233,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section */}
         <div className="flex flex-col gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-xs">
             <p className={`transition-colors duration-300 ${isLight ? "text-gray-500" : "text-gray-500"
@@ -279,7 +270,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Payment Methods */}
         <div className={`mt-8 pt-6 text-center border-t transition-colors duration-300 ${isLight ? "border-gray-200" : "border-gray-800"
           }`}>
           <p className={`text-xs mb-3 transition-colors duration-300 ${isLight ? "text-gray-500" : "text-gray-500"

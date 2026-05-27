@@ -27,7 +27,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menus on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsDropdownOpen(false);
@@ -49,7 +48,6 @@ const Navbar = () => {
     { href: "/my-added-cars", label: "My Added Cars" },
   ];
 
-  // Don't render until mounted to prevent hydration mismatch
   if (!mounted) return null;
 
   return (
@@ -63,7 +61,6 @@ const Navbar = () => {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
-            {/* Logo */}
             <Link href="/" className="group relative flex items-center gap-2">
               <div className="relative">
                 <div className={`absolute inset-0 rounded-full blur-md transition-opacity group-hover:opacity-100 opacity-50 ${isLight ? "bg-teal-400" : "bg-teal-500"
@@ -75,11 +72,10 @@ const Navbar = () => {
               </div>
               <span className={`text-xl font-black tracking-tight transition-colors duration-300 ${isLight ? "text-gray-900" : "text-white"
                 }`}>
-                Rent<span className="text-teal-500">Wheels</span>
+                Rent<span className="text-teal-500">Cars</span>
               </span>
             </Link>
-
-            {/* Desktop Navigation */}
+            
             <div className="hidden md:flex items-center gap-1">
               {links.map((link) => {
                 const isActive = pathName === link.href;
@@ -108,9 +104,7 @@ const Navbar = () => {
               })}
             </div>
 
-            {/* Right Section */}
             <div className="flex items-center gap-3">
-              {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
                 className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${isLight
@@ -121,7 +115,6 @@ const Navbar = () => {
                 {isLight ? <FiMoon size={18} /> : <FiSun size={18} />}
               </button>
 
-              {/* Auth Section */}
               {isPending ? (
                 <div className="h-10 w-24 rounded-xl bg-gray-200 dark:bg-gray-800 animate-pulse" />
               ) : data?.user ? (
@@ -228,7 +221,6 @@ const Navbar = () => {
                 </Link>
               )}
 
-              {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`md:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${isLight
@@ -243,7 +235,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <>
           <div
@@ -255,7 +246,6 @@ const Navbar = () => {
               }`}
           >
             <div className="flex flex-col h-full">
-              {/* Mobile Menu Header */}
               <div className={`p-6 border-b ${isLight ? 'border-gray-100' : 'border-gray-800'}`}>
                 <div className="flex items-center gap-2">
                   <div className="w-10 h-10 rounded-xl bg-teal-500 flex items-center justify-center">
@@ -267,7 +257,6 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Mobile Navigation Links */}
               <div className="flex-1 py-6 px-4 overflow-y-auto">
                 {mobileLinks.map((link) => {
                   const isActive = pathName === link.href;
@@ -291,7 +280,6 @@ const Navbar = () => {
                 })}
               </div>
 
-              {/* Mobile Menu Footer */}
               <div className={`p-6 border-t ${isLight ? 'border-gray-100' : 'border-gray-800'}`}>
                 {data?.user && (
                   <button

@@ -2,24 +2,29 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/providers/ThemeProvider";
+import { FaCar, FaSpinner, FaRoad, FaGaugeHigh, FaGear } from "react-icons/fa6";
+import { FaTachometerAlt } from "react-icons/fa";
 
 // ── Config — edit freely ─────────────────────────────────────────
 const MESSAGES = [
-  "Initializing precision engineering...",
-  "Preparing your elite fleet...",
-  "Syncing telemetry data...",
-  "Calibrating performance metrics...",
-  "Polishing the carbon fiber...",
-  "Optimizing driving dynamics...",
+  "Finding your perfect ride...",
+  "Checking vehicle availability...",
+  "Preparing premium fleet...",
+  "Calculating best deals...",
+  "Loading luxury vehicles...",
+  "Almost ready to go...",
 ];
 
-const BRAND = "CarServer";
-const SUBTITLE = "System Calibration Active";
+const BRAND = "RentWheels";
+const SUBTITLE = "Premium Car Rental Service";
 
 // ── Speed tick marks around the rim ─────────────────────────────
-const TICKS = [0, 45, 90, 135, 180, 225, 270, 315];
+const TICKS = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
 
 export default function LoadingSpinner() {
+  const { theme, mounted } = useTheme();
+  const isLight = theme === "light";
   const [msgIndex, setMsgIndex] = useState(0);
 
   useEffect(() => {
@@ -29,83 +34,150 @@ export default function LoadingSpinner() {
     return () => clearInterval(id);
   }, []);
 
+  if (!mounted) return null;
+
   return (
-    <div className="relative min-h-screen bg-[#0D0D0D] flex flex-col items-center justify-center overflow-hidden">
+    <div className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 ${isLight ? 'bg-gradient-to-br from-gray-50 to-gray-100' : 'bg-gradient-to-br from-[#0D0D0D] to-black'
+      }`}>
+
+      {/* Animated Background Grid */}
+      <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? 'bg-[radial-gradient(#0D9488_1px,transparent_1px)] [background-size:40px_40px]' : 'bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px]'
+        }`} />
+
+      {/* Floating Particles */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className={`absolute rounded-full ${isLight ? 'bg-teal-400' : 'bg-teal-500'}`}
+          style={{
+            width: Math.random() * 4 + 2,
+            height: Math.random() * 4 + 2,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0, 0.5, 0],
+          }}
+          transition={{
+            duration: Math.random() * 3 + 2,
+            repeat: Infinity,
+            delay: Math.random() * 5,
+          }}
+        />
+      ))}
 
       {/* Background glow blobs */}
       <motion.div
-        className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-600/5 blur-[120px]"
+        className={`absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-500/5'
+          }`}
         animate={{ opacity: [0.4, 0.7, 0.4] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-orange-600/5 blur-[120px]"
+        className={`absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] transition-colors duration-300 ${isLight ? 'bg-purple-500/20' : 'bg-purple-500/5'
+          }`}
         animate={{ opacity: [0.4, 0.7, 0.4] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
+      <motion.div
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] rounded-full blur-[150px] transition-colors duration-300 ${isLight ? 'bg-blue-500/10' : 'bg-blue-500/3'
+          }`}
+        animate={{ scale: [0.8, 1.2, 0.8] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-      {/* Main content */}
       <motion.main
         className="relative z-10 flex flex-col items-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Spinner */}
-        <div className="relative w-40 h-40 mb-12">
+
+        <div className="relative w-52 h-52 mb-12">
 
           {/* Outer glow pulse */}
           <motion.div
-            className="absolute inset-0 rounded-full bg-orange-500/10 blur-2xl"
+            className={`absolute inset-0 rounded-full blur-2xl transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-500/10'
+              }`}
             animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.9, 1.1, 0.9] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
 
           {/* Static rim */}
-          <div className="absolute inset-0 rounded-full border border-white/5" />
+          <div className={`absolute inset-0 rounded-full transition-colors duration-300 ${isLight ? 'border border-gray-300' : 'border border-white/5'
+            }`} />
 
-          {/* Spinning arc */}
+          {/* Spinning arc - Outer */}
           <motion.div
-            className="absolute inset-0 rounded-full border-4 border-transparent border-t-orange-500 border-r-orange-500"
-            style={{ boxShadow: "0 0 15px rgba(255,107,43,0.35)" }}
+            className={`absolute inset-0 rounded-full border-4 border-transparent transition-colors duration-300 ${isLight ? 'border-t-teal-500 border-r-teal-500' : 'border-t-teal-500 border-r-teal-500'
+              }`}
+            style={{ boxShadow: isLight ? "0 0 15px rgba(13,148,136,0.25)" : "0 0 15px rgba(13,148,136,0.35)" }}
             animate={{ rotate: 360 }}
             transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+          />
+
+          {/* Spinning arc - Inner (reverse) */}
+          <motion.div
+            className={`absolute inset-[10%] rounded-full border-2 border-transparent transition-colors duration-300 ${isLight ? 'border-b-teal-400 border-l-teal-400' : 'border-b-teal-400 border-l-teal-400'
+              }`}
+            animate={{ rotate: -360 }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
           />
 
           {/* Tick marks */}
           {TICKS.map((deg) => (
             <div
               key={deg}
-              className="absolute inset-0 flex items-start justify-center opacity-20"
+              className="absolute inset-0 flex items-start justify-center"
               style={{ transform: `rotate(${deg}deg)` }}
             >
-              <div className="w-px h-3 bg-white mt-1" />
+              <div className={`w-px h-3 mt-1 transition-colors duration-300 ${isLight ? 'bg-gray-400' : 'bg-white/20'
+                }`} />
             </div>
           ))}
 
           {/* Center hub */}
-          <div className="absolute inset-[35%] rounded-full bg-[#1A1A1A]/60 backdrop-blur-xl border border-white/8 flex items-center justify-center">
-            <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(255,107,43,0.9)]" />
+          <div className={`absolute inset-[30%] rounded-full backdrop-blur-xl border transition-colors duration-300 flex items-center justify-center ${isLight
+              ? 'bg-white/60 border-gray-200'
+              : 'bg-[#1A1A1A]/60 border-white/8'
+            }`}>
+            {/* Center dot */}
+            <div className="relative">
+              <motion.div
+                className="w-3 h-3 rounded-full bg-teal-500 shadow-[0_0_12px_rgba(13,148,136,0.6)]"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                className="absolute inset-0 w-3 h-3 rounded-full bg-teal-400"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
 
             {/* Needle */}
             <motion.div
-              className="absolute bottom-1/2 left-1/2 -translate-x-1/2 w-px origin-bottom"
+              className="absolute bottom-1/2 left-1/2 -translate-x-1/2 w-0.5 origin-bottom"
               style={{
-                height: "60%",
-                background: "linear-gradient(to top, transparent, #ff6b2b)",
+                height: "55%",
+                background: isLight
+                  ? "linear-gradient(to top, transparent, #0D9488)"
+                  : "linear-gradient(to top, transparent, #14b8a6)",
               }}
-              animate={{ rotate: [-45, -42, -45] }}
-              transition={{ duration: 0.12, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ rotate: [-8, 8, -8] }}
+              transition={{ duration: 0.15, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
         </div>
 
         {/* Rotating text */}
-        <div className="text-center space-y-3 h-16 flex flex-col items-center justify-center">
+        <div className="text-center space-y-4 h-20 flex flex-col items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.h1
               key={msgIndex}
-              className="text-2xl font-semibold tracking-wide bg-gradient-to-r from-neutral-400 via-neutral-100 to-neutral-400 bg-[length:200%_auto] bg-clip-text text-transparent"
+              className={`text-xl md:text-2xl font-semibold tracking-wide text-center max-w-md px-4 transition-colors duration-300 ${isLight ? 'text-gray-800' : 'text-white'
+                }`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -115,30 +187,89 @@ export default function LoadingSpinner() {
             </motion.h1>
           </AnimatePresence>
 
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-500">
-            {SUBTITLE}
-          </p>
+          <div className="flex items-center gap-2">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            >
+              <FaSpinner className={`text-xs ${isLight ? 'text-teal-500' : 'text-teal-400'}`} />
+            </motion.div>
+            <p className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-neutral-500'
+              }`}>
+              {SUBTITLE}
+            </p>
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="w-80 mt-10">
+          <div className={`h-1.5 rounded-full overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-200' : 'bg-white/10'
+            }`}>
+            <motion.div
+              className="h-full bg-gradient-to-r from-teal-500 to-teal-400 rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+          <div className="flex justify-between mt-2">
+            <span className={`text-[10px] transition-colors duration-300 ${isLight ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+              Loading...
+            </span>
+            <span className={`text-[10px] transition-colors duration-300 ${isLight ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+              Please wait
+            </span>
+          </div>
         </div>
       </motion.main>
 
       {/* Brand footer */}
       <motion.footer
-        className="fixed bottom-12 flex flex-col items-center gap-2 opacity-30 select-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
+        className="fixed bottom-8 flex flex-col items-center gap-2 select-none"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <div className="flex items-center gap-2">
-          {/* Simple car icon */}
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffb59a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 17H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2l1.5-4h13L19 10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/>
-            <circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/>
-          </svg>
-          <span className="text-2xl font-extrabold tracking-tighter text-neutral-100">
+        <div className="flex items-center gap-3">
+          <motion.div
+            animate={{ x: [-4, 4, -4] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors duration-300 ${isLight ? 'bg-teal-600' : 'bg-teal-500'
+              }`}>
+              <FaCar className={`text-sm ${isLight ? 'text-white' : 'text-white'}`} />
+            </div>
+          </motion.div>
+
+          <span className={`text-xl font-black tracking-tighter transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+            }`}>
             {BRAND}
           </span>
+
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          >
+            <FaGear className={`text-sm transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-white/40'
+              }`} />
+          </motion.div>
         </div>
-        <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+
+        <div className={`h-px w-20 transition-all duration-300 ${isLight
+            ? 'bg-gradient-to-r from-transparent via-teal-500/50 to-transparent'
+            : 'bg-gradient-to-r from-transparent via-white/30 to-transparent'
+          }`} />
+
+        <div className="flex gap-4 mt-2">
+          <FaTachometerAlt className={`text-xs transition-colors duration-300 ${isLight ? 'text-gray-400' : 'text-white/30'
+            }`} />
+          <span className={`text-[10px] tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-400' : 'text-white/30'
+            }`}>
+            SYSTEM READY
+          </span>
+        </div>
       </motion.footer>
     </div>
   );

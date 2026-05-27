@@ -41,13 +41,11 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* Error Code */}
         <h1 className={`text-8xl md:text-9xl font-bold mb-4 animate-fadeInUp transition-colors duration-300 ${isLight ? "text-teal-600" : "text-teal-500"
           }`}>
           404
         </h1>
 
-        {/* Error Message */}
         <div className="mb-8 animate-fadeInUp animation-delay-200">
           <h2 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 ${isLight ? "text-gray-800" : "text-white"
             }`}>
@@ -67,7 +65,6 @@ export default function NotFound() {
           </p>
         </div>
 
-        {/* Search Suggestions */}
         <div className={`rounded-xl shadow-lg p-6 mb-8 max-w-md mx-auto animate-fadeInUp animation-delay-400 transition-colors duration-300 ${isLight
             ? "bg-white shadow-gray-200"
             : "bg-gray-900/50 shadow-gray-950 border border-gray-800"
@@ -117,19 +114,8 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp animation-delay-600">
-          {/* <button
-            onClick={() => router.back()}
-            className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${isLight
-                ? "bg-gray-600 text-white hover:bg-gray-700"
-                : "bg-gray-700 text-gray-200 hover:bg-gray-600"
-              }`}
-          >
-            <FaArrowLeft />
-            Go Back
-          </button> */}
-
+          
           <Link
             href="/"
             className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${isLight
@@ -153,7 +139,6 @@ export default function NotFound() {
           </Link>
         </div>
 
-        {/* Fun Illustration with Road Theme */}
         <div className="mt-12 text-center animate-fadeInUp animation-delay-800">
           <div className={`inline-flex items-center gap-3 text-sm transition-colors duration-300 ${isLight ? "text-gray-500" : "text-gray-500"
             }`}>

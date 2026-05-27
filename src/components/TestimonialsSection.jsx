@@ -81,14 +81,12 @@ export default function TestimonialsSection() {
   return (
     <section className={`relative w-full px-6 py-20 md:px-12 lg:px-20 lg:py-28 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
-      {/* Background glow effects */}
       <div className={`absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-600/5'
         }`} />
       <div className={`absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-600/5'
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Heading */}
         <div className="mb-20 text-center flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -118,7 +116,6 @@ export default function TestimonialsSection() {
           </motion.div>
         </div>
 
-        {/* Testimonial Cards - Marquee */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -151,24 +148,20 @@ export default function TestimonialsSection() {
                   }`}
               >
                 <div>
-                  {/* Quote Icon */}
                   <FaQuoteLeft className={`text-2xl mb-4 ${isLight ? 'text-teal-400' : 'text-teal-500'}`} />
 
-                  {/* Stars */}
                   <div className="mb-4 flex gap-1">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <FaStar key={i} className={`text-sm ${isLight ? 'text-teal-500' : 'text-teal-500'}`} />
                     ))}
                   </div>
 
-                  {/* Review */}
                   <p className={`mb-6 text-[15px] leading-relaxed transition-colors duration-300 ${isLight ? 'text-gray-700' : 'text-zinc-300'
                     }`}>
                     "{testimonial.review}"
                   </p>
                 </div>
 
-                {/* User row */}
                 <div className={`flex items-center gap-4 pt-6 transition-colors duration-300 ${isLight ? 'border-t border-gray-100' : 'border-t border-zinc-900'
                   }`}>
                   <img
@@ -194,7 +187,6 @@ export default function TestimonialsSection() {
           </div>
         </motion.div>
 
-        {/* Dynamic Premium CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -205,7 +197,6 @@ export default function TestimonialsSection() {
               : 'bg-gradient-to-b from-zinc-950 to-black border border-zinc-800'
             }`}
         >
-          {/* Animated glow behind CTA */}
           <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-[130px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-600/10'
             }`} />
 
@@ -261,7 +252,6 @@ export default function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* Add marquee animation to global CSS or here */}
       <style jsx>{`
         @keyframes marquee {
           0% {

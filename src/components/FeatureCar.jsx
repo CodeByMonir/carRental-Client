@@ -9,17 +9,15 @@ import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useTheme } from "@/providers/ThemeProvider";
 
-// Shimmering Card Skeleton Component with Theme Support
 const CardSkeleton = ({ isLight }) => (
   <div className={`overflow-hidden rounded-[30px] border p-5 shadow-2xl transition-colors duration-300 ${isLight
       ? 'border-gray-200 bg-white'
       : 'border-zinc-800/80 bg-zinc-950/60'
     }`}>
-    {/* Image Placeholder */}
+      
     <div className={`relative h-[240px] w-full rounded-[24px] shimmer mb-6 ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
       }`} />
 
-    {/* Content Placeholder */}
     <div className="space-y-4">
       <div className="flex justify-between items-start">
         <div className="space-y-2">
@@ -32,14 +30,12 @@ const CardSkeleton = ({ isLight }) => (
         </div>
       </div>
 
-      {/* Specs Pill Placeholder */}
       <div className="flex gap-2 mt-5">
         <div className={`h-6 w-16 rounded-full shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'}`} />
         <div className={`h-6 w-16 rounded-full shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'}`} />
         <div className={`h-6 w-16 rounded-full shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'}`} />
       </div>
 
-      {/* Button Placeholder */}
       <div className={`h-14 w-full rounded-2xl shimmer mt-8 ${isLight ? 'bg-gray-200' : 'bg-zinc-800'}`} />
     </div>
   </div>
@@ -67,7 +63,6 @@ export default function FeaturedFleet() {
     fetchData();
   }, [setCars]);
 
-  // Framer Motion Container Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -88,12 +83,11 @@ export default function FeaturedFleet() {
   return (
     <section className={`relative w-full px-4 py-16 sm:px-6 md:px-10 lg:px-20 lg:py-24 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
-      {/* Background radial glow */}
+        
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Header */}
         <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <span className={`text-xs font-bold uppercase tracking-[0.35em] block mb-3 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
@@ -110,7 +104,6 @@ export default function FeaturedFleet() {
             </p>
           </div>
 
-          {/* View All Button */}
           <Link href="/explore-cars" className="group">
             <motion.button
               whileHover={{ x: 3 }}
@@ -125,7 +118,6 @@ export default function FeaturedFleet() {
           </Link>
         </div>
 
-        {/* Loading Grid of Skeletons */}
         {loading ? (
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {Array.from({ length: 3 }).map((_, index) => (
@@ -141,7 +133,7 @@ export default function FeaturedFleet() {
             <p className={`text-sm ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Please check back later or refresh the page.</p>
           </div>
         ) : (
-          /* Staggered Animated Grid of Car Cards */
+          
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -166,7 +158,6 @@ export default function FeaturedFleet() {
                   }`}
               >
                 <div>
-                  {/* Image */}
                   <div className="relative h-[250px] w-full overflow-hidden p-3 pb-0">
                     <div className="relative h-full w-full overflow-hidden rounded-[24px]">
                       <Image
@@ -177,13 +168,11 @@ export default function FeaturedFleet() {
                         unoptimized
                       />
 
-                      {/* Overlay gradient */}
                       <div className={`absolute inset-0 ${isLight
                           ? 'bg-gradient-to-t from-white/90 via-white/10 to-transparent'
                           : 'bg-gradient-to-t from-black/90 via-black/10 to-transparent'
                         }`} />
 
-                      {/* Rating Badge */}
                       <div className={`absolute right-4 top-4 flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold backdrop-blur-md transition-colors duration-300 ${isLight
                           ? 'border-teal-500/20 bg-white/85 text-gray-800'
                           : 'border-teal-500/20 bg-black/85 text-white'
@@ -192,7 +181,6 @@ export default function FeaturedFleet() {
                         5.0
                       </div>
 
-                      {/* Floating Car Type */}
                       <div className="absolute left-4 bottom-4">
                         <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest shadow-lg transition-colors duration-300 ${isLight
                             ? 'bg-teal-500 text-white shadow-teal-500/20'
@@ -204,9 +192,8 @@ export default function FeaturedFleet() {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="p-6 pb-2">
-                    {/* Header Row */}
+
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <h3 className={`text-2xl font-bold tracking-tight transition-colors line-clamp-1 duration-300 ${isLight
@@ -221,7 +208,6 @@ export default function FeaturedFleet() {
                         </p>
                       </div>
 
-                      {/* Price */}
                       <div className="text-right">
                         <p className={`text-2xl font-black transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-400'
                           }`}>
@@ -234,7 +220,6 @@ export default function FeaturedFleet() {
                       </div>
                     </div>
 
-                    {/* Specs List */}
                     <div className="mt-5 flex flex-wrap gap-2">
                       {["503 HP", "Auto", "4 Seats"].map((spec, index) => (
                         <span
@@ -251,7 +236,6 @@ export default function FeaturedFleet() {
                   </div>
                 </div>
 
-                {/* Booking Button action */}
                 <div className="p-6 pt-0">
                   <Link href={`/explore-cars/${car._id}`}>
                     <motion.button
@@ -272,7 +256,6 @@ export default function FeaturedFleet() {
         )}
       </div>
 
-      {/* Add custom shimmer animation CSS if not present */}
       <style jsx>{`
                 @keyframes shimmer {
                     0% {
