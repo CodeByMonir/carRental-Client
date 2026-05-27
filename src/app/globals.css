@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+@plugin "daisyui";
+
+/* ─── Theme Variables ────────────────────────────────────────── */
+:root {
+  --bg-primary: #050505;
+  --bg-card: #0a0a0a;
+  --bg-card-hover: #111111;
+  --border-subtle: rgba(39, 39, 42, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+}
+
+html.light-mode {
+  --bg-primary: #f8f8f8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f4f5;
+  --border-subtle: rgba(228, 228, 231, 0.9);
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #a1a1aa;
+}
+
+html.light-mode body {
+  background-color: #f8f8f8!important;
+}
+
+/* Section backgrounds respect theme */
+html.light-mode section {
+  background-color: #f8f8f8;
+}
+
+/* ─── Shimmer Loading Animation ─────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(39, 39, 42, 0.4) 25%,
+    rgba(63, 63, 70, 0.7) 50%,
+    rgba(39, 39, 42, 0.4) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+html.light-mode .shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(228, 228, 231, 0.6) 25%,
+    rgba(212, 212, 216, 0.9) 50%,
+    rgba(228, 228, 231, 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+  border: 2px solid #000000;
+}
+::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+
+html.light-mode ::-webkit-scrollbar-track { background: #f4f4f5; }
+html.light-mode ::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-color: #f4f4f5;
+}
+html.light-mode ::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+
+/* ─── Marquee Animation ───────────────────────────────────────── */
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

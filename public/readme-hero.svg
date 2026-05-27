@@ -1,0 +1,57 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated Car Rental Client Side banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" />
+      <stop offset="1" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="60" x2="1080" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBBF24" />
+      <stop offset="1" stop-color="#F97316" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <rect x="18" y="18" width="1164" height="284" rx="36" fill="url(#bg)" stroke="#000000" stroke-width="6" filter="url(#shadow)" />
+
+  <circle cx="120" cy="88" r="14" fill="#22C55E">
+    <animate attributeName="r" values="14;20;14" dur="2s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="120" cy="88" r="32" stroke="#22C55E" stroke-width="3" opacity="0.35">
+    <animate attributeName="r" values="32;50;32" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.35;0;0.35" dur="2s" repeatCount="indefinite" />
+  </circle>
+
+  <text x="160" y="102" fill="#FFFFFF" font-size="58" font-weight="800" font-family="Arial, Helvetica, sans-serif">
+    Car Rental Client Side
+  </text>
+  <text x="160" y="152" fill="#CBD5E1" font-size="26" font-family="Arial, Helvetica, sans-serif">
+    Next.js • React • Tailwind • Motion • Auth • MongoDB
+  </text>
+
+  <g transform="translate(780 58)">
+    <rect x="0" y="0" width="330" height="170" rx="28" fill="#111827" stroke="#000000" stroke-width="5" />
+    <rect x="24" y="26" width="168" height="18" rx="9" fill="url(#accent)">
+      <animate attributeName="width" values="168;226;168" dur="2.6s" repeatCount="indefinite" />
+    </rect>
+    <rect x="24" y="58" width="260" height="14" rx="7" fill="#475569" />
+    <rect x="24" y="84" width="210" height="14" rx="7" fill="#475569" />
+    <rect x="24" y="110" width="240" height="14" rx="7" fill="#475569" />
+
+    <g transform="translate(212 28)">
+      <path d="M20 0C36 0 48 12 48 28V68C48 84 36 96 20 96H0V0H20Z" fill="#F59E0B" stroke="#000000" stroke-width="3">
+        <animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="1.8s" repeatCount="indefinite" />
+      </path>
+      <circle cx="18" cy="74" r="8" fill="#111827" />
+      <circle cx="34" cy="74" r="8" fill="#111827" />
+    </g>
+  </g>
+
+  <g transform="translate(70 214)">
+    <rect x="0" y="0" width="1060" height="12" rx="6" fill="#1F2937" />
+    <rect x="0" y="0" width="300" height="12" rx="6" fill="url(#accent)">
+      <animate attributeName="x" values="0;760;0" dur="3.8s" repeatCount="indefinite" />
+    </rect>
+  </g>
+</svg>
