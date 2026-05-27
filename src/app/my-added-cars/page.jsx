@@ -7,33 +7,39 @@ import { AlertDialog, Button } from "@heroui/react";
 import { deleteCar } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import UpdateCarModal from "@/components/UpdateBtn";
-import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/providers/ThemeProvider";
+import { FaCar, FaEdit, FaTrash, FaPlus, FaMapMarkerAlt, FaDollarSign } from "react-icons/fa";
 
 // Shimmering Row Skeleton Component for Listings
-const ListingRowSkeleton = () => (
-  <div className="flex flex-col gap-6 rounded-[28px] border border-zinc-900 bg-[#0a0a0a] p-5 shadow-2xl md:flex-row md:items-center md:justify-between">
+const ListingRowSkeleton = ({ isLight }) => (
+  <div className={`flex flex-col gap-6 rounded-2xl border p-5 shadow-md transition-colors duration-300 md:flex-row md:items-center md:justify-between ${isLight ? 'border-gray-200 bg-white' : 'border-zinc-900 bg-[#0a0a0a]'
+    }`}>
     <div className="flex flex-col gap-5 md:flex-row md:items-center w-full">
-      {/* Car Image Placeholder */}
-      <div className="relative h-[130px] w-full rounded-[20px] shimmer md:w-[220px]" />
-      
-      {/* Details Placeholder */}
+      <div className={`relative h-[130px] w-full rounded-xl shimmer md:w-[220px] ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+        }`} />
       <div className="flex-1 space-y-3">
-        <div className="h-7 w-48 rounded-lg shimmer" />
+        <div className={`h-7 w-48 rounded-lg shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+          }`} />
         <div className="space-y-2 mt-2">
-          <div className="h-4 w-56 rounded shimmer" />
-          <div className="h-4 w-24 rounded shimmer" />
+          <div className={`h-4 w-56 rounded shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+            }`} />
+          <div className={`h-4 w-24 rounded shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+            }`} />
         </div>
       </div>
     </div>
-    {/* Buttons Placeholder */}
     <div className="flex items-center gap-3 self-end md:self-center">
-      <div className="h-12 w-24 rounded-xl shimmer" />
-      <div className="h-12 w-24 rounded-xl shimmer" />
+      <div className={`h-10 w-20 rounded-xl shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+        }`} />
+      <div className={`h-10 w-20 rounded-xl shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+        }`} />
     </div>
   </div>
 );
 
 export default function MyListingsPage() {
+  const { theme, mounted } = useTheme();
+  const isLight = theme === "light";
   const router = useRouter();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,197 +84,216 @@ export default function MyListingsPage() {
     }
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
-  };
+  if (!mounted) return null;
 
   return (
-    <section className="relative min-h-screen w-full bg-[#050505] px-4 py-16 text-white sm:px-6 md:px-10 lg:px-20 lg:py-24 overflow-hidden">
+    <section className={`relative min-h-screen w-full px-4 py-16 sm:px-6 md:px-10 lg:px-20 lg:py-24 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
+      }`}>
       {/* Soft ambient backlights */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className={`absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+        }`} />
+      <div className={`absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
+        }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-xs font-bold uppercase tracking-[0.35em] text-orange-500 block mb-3">
+        <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <span className={`text-xs font-bold uppercase tracking-[0.35em] block mb-3 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
+              }`}>
               Showroom Control
             </span>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl">
+            <h1 className={`text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+              }`}>
               My Listings
             </h1>
-            <div className="h-1 w-20 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full my-3" />
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-400 font-light">
+            <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full my-3" />
+            <p className={`mt-4 max-w-2xl text-base leading-relaxed font-light transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+              }`}>
               Manage your premium car fleet, update pricing, customize specifications, and control vehicle availability from one unified cockpit dashboard.
             </p>
-          </motion.div>
+          </div>
 
           {/* Add Car Button */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Link href="/add-cars">
-              <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="h-14 rounded-2xl bg-gradient-to-r from-orange-600 to-orange-500 px-8 text-base font-bold uppercase tracking-wider text-white shadow-[0_5px_15px_rgba(249,115,22,0.25)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300"
-              >
-                Add Car
-              </motion.button>
-            </Link>
-          </motion.div>
+          <Link href="/add-cars">
+            <button className={`flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold uppercase tracking-wider transition-all duration-300 ${isLight
+                ? 'bg-teal-600 text-white hover:bg-teal-700 shadow-md shadow-teal-500/25'
+                : 'bg-teal-500 text-white hover:bg-teal-600 shadow-md shadow-teal-500/25'
+              }`}>
+              <FaPlus size={14} />
+              Add Car
+            </button>
+          </Link>
         </div>
 
         {/* Listings Stack */}
-        <AnimatePresence mode="wait">
-          {loading || isPending ? (
-            /* Loading list */
-            <motion.div 
-              key="loading-list"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="space-y-6"
-            >
-              {Array.from({ length: 3 }).map((_, index) => (
-                <ListingRowSkeleton key={index} />
-              ))}
-            </motion.div>
-          ) : listings.length === 0 ? (
-            /* Elegant empty state */
-            <motion.div 
-              key="empty-list"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              className="rounded-[30px] border border-zinc-900 bg-[#080808] p-16 text-center max-w-xl mx-auto shadow-2xl"
-            >
-              <div className="h-16 w-16 rounded-full border border-orange-500/20 bg-orange-500/10 flex items-center justify-center mx-auto mb-6">
-                <svg className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold mb-2">No listings found</h2>
-              <p className="text-zinc-500 text-sm max-w-sm mx-auto leading-relaxed mb-6">
-                You haven't listed any of your luxury vehicles for renting yet. Tap "Add Car" to expand the collection.
-              </p>
-            </motion.div>
-          ) : (
-            /* Staggered animated rows */
-            <motion.div 
-              key="listings-list"
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-              className="space-y-6"
-            >
-              {listings.map((car, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ y: -4, borderColor: "rgba(249, 115, 22, 0.35)", boxShadow: "0 10px 30px rgba(249, 115, 22, 0.05)" }}
-                  className="flex flex-col gap-6 rounded-[28px] border border-zinc-900 bg-[#080808] p-5 shadow-2xl transition-all duration-300 md:flex-row md:items-center md:justify-between"
-                >
-                  {/* Left content */}
-                  <div className="flex flex-col gap-5 md:flex-row md:items-center">
-                    {/* Image with hover scale */}
-                    <div className="relative h-[130px] w-full overflow-hidden rounded-[20px] md:w-[220px]">
-                      <Image
-                        src={car.imageUrl}
-                        alt={car.carName}
-                        fill
-                        className="object-cover transition duration-700 hover:scale-105"
-                        unoptimized
-                      />
-                    </div>
+        {loading || isPending ? (
+          <div className="space-y-5">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <ListingRowSkeleton key={index} isLight={isLight} />
+            ))}
+          </div>
+        ) : listings.length === 0 ? (
+          /* Empty state */
+          <div className={`rounded-2xl border p-12 text-center max-w-lg mx-auto transition-colors duration-300 ${isLight
+              ? 'border-gray-200 bg-white'
+              : 'border-zinc-900 bg-[#080808]'
+            }`}>
+            <div className={`w-16 h-16 rounded-full border flex items-center justify-center mx-auto mb-5 transition-colors duration-300 ${isLight
+                ? 'border-teal-500/20 bg-teal-500/10'
+                : 'border-teal-500/20 bg-teal-500/10'
+              }`}>
+              <FaCar className={`h-6 w-6 ${isLight ? 'text-teal-600' : 'text-teal-500'}`} />
+            </div>
+            <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+              }`}>
+              No Listings Found
+            </h2>
+            <p className={`text-sm max-w-sm mx-auto leading-relaxed mb-6 transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-zinc-500'
+              }`}>
+              You haven't listed any of your luxury vehicles for renting yet. Tap "Add Car" to expand the collection.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-5">
+            {listings.map((car, index) => (
+              <div
+                key={index}
+                className={`flex flex-col gap-5 rounded-2xl border p-5 shadow-md transition-all duration-300 hover:shadow-lg md:flex-row md:items-center md:justify-between ${isLight
+                    ? 'border-gray-200 bg-white hover:shadow-gray-300'
+                    : 'border-zinc-900 bg-[#080808] hover:shadow-zinc-800'
+                  }`}
+              >
+                {/* Left content */}
+                <div className="flex flex-col gap-4 md:flex-row md:items-center flex-1">
+                  {/* Image */}
+                  <div className="relative h-[110px] w-full overflow-hidden rounded-xl md:w-[180px]">
+                    <Image
+                      src={car.imageUrl}
+                      alt={car.carName}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
 
-                    {/* Info text */}
-                    <div>
-                      <h2 className="text-2xl font-bold tracking-tight text-white mb-2">
-                        {car.carName}
-                      </h2>
+                  {/* Info text */}
+                  <div className="flex-1">
+                    <h2 className={`text-xl font-bold tracking-tight mb-2 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+                      }`}>
+                      {car.carName}
+                    </h2>
 
-                      <p className="text-sm font-light text-zinc-400 flex flex-wrap gap-2 items-center">
-                        <span className="rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-semibold text-zinc-300 border border-zinc-800/80">{car.carType}</span>
-                        <span>•</span>
-                        <span>{car.pickupLocation}</span>
-                        <span>•</span>
-                        <span className="text-orange-400 font-bold">${car.dailyRentPrice} / day</span>
-                      </p>
-
-                      <div className="mt-3 flex items-center gap-1.5">
-                        <span className={`h-2 w-2 rounded-full ${
-                          car.availabilityStatus === "Available" ? "bg-emerald-400 animate-pulse" : "bg-rose-400"
-                        }`} />
-                        <span className={`text-xs font-bold uppercase tracking-wider ${
-                          car.availabilityStatus === "Available" ? "text-emerald-400" : "text-rose-400"
+                    <div className="flex flex-wrap items-center gap-2 text-sm">
+                      <span className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-300 ${isLight ? 'bg-gray-100 text-gray-700' : 'bg-zinc-900 text-zinc-300'
                         }`}>
-                          {car.availabilityStatus}
+                        {car.carType}
+                      </span>
+                      <span className={isLight ? 'text-gray-400' : 'text-zinc-600'}>•</span>
+                      <div className="flex items-center gap-1">
+                        <FaMapMarkerAlt className={`text-xs ${isLight ? 'text-teal-600' : 'text-teal-500'}`} />
+                        <span className={isLight ? 'text-gray-600' : 'text-zinc-400'}>
+                          {car.pickupLocation}
                         </span>
                       </div>
+                      <span className={isLight ? 'text-gray-400' : 'text-zinc-600'}>•</span>
+                      <div className="flex items-center gap-1">
+                        <FaDollarSign className={`text-xs ${isLight ? 'text-teal-600' : 'text-teal-500'}`} />
+                        <span className={`font-bold ${isLight ? 'text-teal-600' : 'text-teal-400'}`}>
+                          ${car.dailyRentPrice}
+                        </span>
+                        <span className={isLight ? 'text-gray-500' : 'text-zinc-500'}>/day</span>
+                      </div>
+                    </div>
+
+                    {/* Availability Status */}
+                    <div className="mt-3 flex items-center gap-2">
+                      <div className={`h-2 w-2 rounded-full ${car.availabilityStatus === "Available" ? "bg-teal-500" : "bg-rose-500"
+                        }`} />
+                      <span className={`text-xs font-semibold uppercase tracking-wider ${car.availabilityStatus === "Available"
+                          ? (isLight ? 'text-teal-600' : 'text-teal-400')
+                          : (isLight ? 'text-rose-600' : 'text-rose-400')
+                        }`}>
+                        {car.availabilityStatus}
+                      </span>
                     </div>
                   </div>
+                </div>
 
-                  {/* Buttons group */}
-                  <div className="flex items-center gap-3 self-end md:self-center">
-                    {/* Edit Modal Button */}
-                    <UpdateCarModal car={car} />
+                {/* Buttons group */}
+                <div className="flex items-center gap-3 self-end md:self-center">
+                  {/* Edit Modal Button */}
+                  <UpdateCarModal car={car} />
 
-                    {/* Premium Styled Delete Alert Dialog */}
-                    <AlertDialog>
-                      <Button variant="danger" className="rounded-xl font-bold uppercase tracking-wider text-xs px-5 py-3 h-12 bg-red-600/10 text-red-400 border border-red-500/20 hover:bg-red-500 hover:text-white transition-colors duration-200">
-                        Delete
-                      </Button>
-                      <AlertDialog.Backdrop>
-                        <AlertDialog.Container>
-                          <AlertDialog.Dialog className="sm:max-w-[400px] rounded-3xl bg-zinc-950 border border-zinc-900 text-white p-6 shadow-3xl">
-                            <AlertDialog.CloseTrigger />
-                            <AlertDialog.Header>
-                              <AlertDialog.Icon status="danger" />
-                              <AlertDialog.Heading className="text-xl font-extrabold tracking-tight">Delete Vehicle listing?</AlertDialog.Heading>
-                            </AlertDialog.Header>
-                            <AlertDialog.Body className="mt-3">
-                              <p className="text-zinc-400 text-sm leading-relaxed">
-                                This will permanently remove <strong>{car.carName}</strong> from our active showrooms inventory database. This action is absolute and cannot be undone.
-                              </p>
-                            </AlertDialog.Body>
-                            <AlertDialog.Footer className="mt-6 flex justify-end gap-3">
-                              <Button slot="close" variant="tertiary" className="rounded-xl font-semibold border border-zinc-800 bg-white/5 hover:bg-white/10 text-white px-5 py-2 text-xs">
-                                Cancel
-                              </Button>
-                              <Button slot="close" variant="danger" onClick={() => handleDelete(car._id)} className="rounded-xl font-bold bg-red-600 hover:bg-red-700 text-white px-5 py-2 text-xs">
-                                Delete listing
-                              </Button>
-                            </AlertDialog.Footer>
-                          </AlertDialog.Dialog>
-                        </AlertDialog.Container>
-                      </AlertDialog.Backdrop>
-                    </AlertDialog>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  {/* Delete Alert Dialog */}
+                  <AlertDialog>
+                    <Button className={`rounded-xl font-semibold text-xs px-4 py-2.5 h-10 transition-all duration-300 ${isLight
+                        ? 'bg-red-100 text-red-600 border border-red-200 hover:bg-red-600 hover:text-white'
+                        : 'bg-red-600/10 text-red-400 border border-red-500/20 hover:bg-red-500 hover:text-white'
+                      }`}>
+                      <FaTrash className="mr-1.5 text-xs" />
+                      Delete
+                    </Button>
+                    <AlertDialog.Backdrop>
+                      <AlertDialog.Container>
+                        <AlertDialog.Dialog className={`sm:max-w-[400px] rounded-2xl p-6 shadow-2xl transition-colors duration-300 ${isLight ? 'bg-white border border-gray-200' : 'bg-zinc-950 border border-zinc-900'
+                          }`}>
+                          <AlertDialog.CloseTrigger />
+                          <AlertDialog.Header>
+                            <AlertDialog.Icon status="danger" />
+                            <AlertDialog.Heading className={`text-xl font-bold tracking-tight ${isLight ? 'text-gray-900' : 'text-white'
+                              }`}>
+                              Delete Vehicle Listing?
+                            </AlertDialog.Heading>
+                          </AlertDialog.Header>
+                          <AlertDialog.Body className="mt-3">
+                            <p className={`text-sm leading-relaxed transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                              }`}>
+                              This will permanently remove <strong className={isLight ? 'text-gray-900' : 'text-white'}>{car.carName}</strong> from our active showroom inventory. This action is irreversible.
+                            </p>
+                          </AlertDialog.Body>
+                          <AlertDialog.Footer className="mt-6 flex justify-end gap-3">
+                            <Button slot="close" variant="tertiary" className={`rounded-lg font-semibold px-4 py-2 text-xs transition-colors ${isLight
+                                ? 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
+                                : 'border border-zinc-800 bg-white/5 text-white hover:bg-white/10'
+                              }`}>
+                              Cancel
+                            </Button>
+                            <Button slot="close" variant="danger" onClick={() => handleDelete(car._id)} className={`rounded-lg font-bold px-4 py-2 text-xs transition-colors ${isLight
+                                ? 'bg-red-600 text-white hover:bg-red-700'
+                                : 'bg-red-600 text-white hover:bg-red-700'
+                              }`}>
+                              Delete Listing
+                            </Button>
+                          </AlertDialog.Footer>
+                        </AlertDialog.Dialog>
+                      </AlertDialog.Container>
+                    </AlertDialog.Backdrop>
+                  </AlertDialog>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {/* Add shimmer animation styles */}
+      <style jsx global>{`
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        .shimmer {
+          animation: shimmer 2s infinite linear;
+          background: linear-gradient(
+            to right,
+            ${isLight ? '#f0f0f0' : '#1a1a1a'} 4%,
+            ${isLight ? '#e0e0e0' : '#2a2a2a'} 25%,
+            ${isLight ? '#f0f0f0' : '#1a1a1a'} 36%
+          );
+          background-size: 1000px 100%;
+        }
+      `}</style>
     </section>
   );
 }

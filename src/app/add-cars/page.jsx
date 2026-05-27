@@ -1,10 +1,11 @@
-
 "use client";
 
 import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { useTheme } from "@/providers/ThemeProvider";
+import { useState } from "react";
+import { FaCar, FaDollarSign, FaUsers, FaMapMarkerAlt, FaImage, FaInfoCircle } from "react-icons/fa";
 
 const carTypes = [
   "SUV",
@@ -20,19 +21,36 @@ const availabilityOptions = [
   "Unavailable",
 ];
 
+const transmissionOptions = [
+  "Automatic",
+  "Manual",
+];
+
+const fuelOptions = [
+  "Petrol",
+  "Diesel",
+  "Electric",
+  "Hybrid",
+];
+
 export default function AddCarForm() {
+  const { theme, mounted } = useTheme();
+  const isLight = theme === "light";
   const { data, isLoading } = useSession();
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const formData = Object.fromEntries(new FormData(e.target));
     const userId = data?.user.id;
     const userName = data?.user.name;
     const userEmail = data?.user.email;
     const bookedUserCount = 0;
     const carLocation = formData.pickupLocation;
-    
+
     const fullData = {
       ...formData,
       userId,
@@ -41,10 +59,11 @@ export default function AddCarForm() {
       bookedUserCount,
       carLocation,
     }
+
     try {
       const { data: tokenData } = await authClient.token();
       const token = tokenData.token;
-     
+
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars`, {
         method: "POST",
         headers: {
@@ -63,56 +82,63 @@ export default function AddCarForm() {
             className: "bg-success text-success-foreground",
           },
           description: "Checking your car in your Explore Section",
-        })
+        });
+        setTimeout(() => { router.push("/explore-cars"); }, 1000);
       }
-
-      setTimeout(() => { router.push("/explore-cars"); }, 1000);
-
     } catch (error) {
       console.log(error);
+      toast.error("Failed to add car. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  return (
-    <section className="relative min-h-screen w-full bg-[#050505] px-6 py-20 md:px-12 lg:px-20 overflow-hidden">
-      {/* Decorative ambient glowing backdrops */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
+  if (!mounted) return null;
 
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mx-auto max-w-4xl relative z-10"
-      >
+  return (
+    <section className={`relative min-h-screen w-full px-6 py-20 md:px-12 lg:px-20 lg:py-32 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
+      }`}>
+      {/* Decorative ambient glowing backdrops */}
+      <div className={`absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+        }`} />
+      <div className={`absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
+        }`} />
+
+      <div className="mx-auto max-w-5xl relative z-10">
         {/* Form Container Card */}
-        <div className="rounded-[36px] border border-zinc-900 bg-gradient-to-b from-zinc-950 to-black p-8 shadow-3xl md:p-12">
+        <div className={`rounded-2xl border p-6 shadow-xl transition-colors duration-300 md:p-10 lg:p-12 ${isLight
+            ? 'border-gray-200 bg-white'
+            : 'border-zinc-900 bg-gradient-to-b from-zinc-950 to-black'
+          }`}>
           {/* Header */}
           <div className="mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.35em] text-orange-500 block mb-2">
+            <span className={`text-xs font-bold uppercase tracking-[0.35em] block mb-2 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
+              }`}>
               Fleet Expansion
             </span>
 
-            <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+            <h2 className={`text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
+              }`}>
               Add a New Vehicle
             </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full my-3" />
+            <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full my-3" />
 
-            <p className="mt-4 text-base leading-relaxed text-zinc-400 font-light">
-              Expand our elite luxury fleet inventory. Fill in the technical specifications, category details, pricing metrics, and location criteria below.
+            <p className={`mt-4 text-base leading-relaxed font-light transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+              }`}>
+              Expand our elite luxury fleet inventory. Fill in the technical specifications,
+              category details, pricing metrics, and location criteria below.
             </p>
           </div>
 
           {/* Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Grid for compact fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Car Name */}
               <div>
-                <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
+                  <FaCar className="inline mr-1.5 text-teal-500" size={12} />
                   Car Name
                 </label>
                 <input
@@ -120,13 +146,18 @@ export default function AddCarForm() {
                   type="text"
                   name="carName"
                   placeholder="e.g. Porsche 911 GT3 RS"
-                  className="h-14 w-full rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
+                  className={`h-12 w-full rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                      ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                      : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                    }`}
                 />
               </div>
 
               {/* Daily Rent Price */}
               <div>
-                <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
+                  <FaDollarSign className="inline mr-1.5 text-teal-500" size={12} />
                   Daily Rent Price ($)
                 </label>
                 <input
@@ -134,35 +165,44 @@ export default function AddCarForm() {
                   type="number"
                   name="dailyRentPrice"
                   placeholder="e.g. 450"
-                  className="h-14 w-full rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
+                  className={`h-12 w-full rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                      ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                      : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                    }`}
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Car Type */}
               <div>
-                <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
                   Car Type / Category
                 </label>
                 <div className="relative">
                   <select
                     name="carType"
-                    className="h-14 w-full appearance-none rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 focus:border-orange-500/50"
+                    className={`h-12 w-full appearance-none rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                        ? 'border-gray-300 bg-gray-50 text-gray-900 focus:border-teal-500 focus:ring-teal-500/20'
+                        : 'border-zinc-800 bg-[#0d0d0d] text-white focus:border-teal-500 focus:ring-teal-500/20'
+                      }`}
                   >
                     {carTypes.map((type) => (
-                      <option key={type} value={type} className="bg-zinc-950 text-white">
+                      <option key={type} value={type} className={isLight ? 'bg-white' : 'bg-zinc-950'}>
                         {type}
                       </option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">▼</div>
+                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">▼</div>
                 </div>
               </div>
 
               {/* Seat Capacity */}
               <div>
-                <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
+                  <FaUsers className="inline mr-1.5 text-teal-500" size={12} />
                   Seat Capacity
                 </label>
                 <input
@@ -170,14 +210,71 @@ export default function AddCarForm() {
                   type="number"
                   name="seatCapacity"
                   placeholder="e.g. 2"
-                  className="h-14 w-full rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
+                  className={`h-12 w-full rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                      ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                      : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                    }`}
                 />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Transmission */}
+              <div>
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
+                  Transmission
+                </label>
+                <div className="relative">
+                  <select
+                    name="transmission"
+                    className={`h-12 w-full appearance-none rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                        ? 'border-gray-300 bg-gray-50 text-gray-900 focus:border-teal-500 focus:ring-teal-500/20'
+                        : 'border-zinc-800 bg-[#0d0d0d] text-white focus:border-teal-500 focus:ring-teal-500/20'
+                      }`}
+                    defaultValue="Automatic"
+                  >
+                    {transmissionOptions.map((type) => (
+                      <option key={type} value={type} className={isLight ? 'bg-white' : 'bg-zinc-950'}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">▼</div>
+                </div>
+              </div>
+
+              {/* Fuel Type */}
+              <div>
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
+                  Fuel Type
+                </label>
+                <div className="relative">
+                  <select
+                    name="fuelType"
+                    className={`h-12 w-full appearance-none rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                        ? 'border-gray-300 bg-gray-50 text-gray-900 focus:border-teal-500 focus:ring-teal-500/20'
+                        : 'border-zinc-800 bg-[#0d0d0d] text-white focus:border-teal-500 focus:ring-teal-500/20'
+                      }`}
+                    defaultValue="Petrol"
+                  >
+                    {fuelOptions.map((type) => (
+                      <option key={type} value={type} className={isLight ? 'bg-white' : 'bg-zinc-950'}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">▼</div>
+                </div>
               </div>
             </div>
 
             {/* Image URL */}
             <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+              <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                }`}>
+                <FaImage className="inline mr-1.5 text-teal-500" size={12} />
                 Vehicle Image URL
               </label>
               <input
@@ -185,14 +282,19 @@ export default function AddCarForm() {
                 type="text"
                 name="imageUrl"
                 placeholder="Paste high-resolution image link"
-                className="h-14 w-full rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
+                className={`h-12 w-full rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                    ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                    : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                  }`}
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Pickup Location */}
               <div>
-                <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
+                  <FaMapMarkerAlt className="inline mr-1.5 text-teal-500" size={12} />
                   Pickup Location / City
                 </label>
                 <input
@@ -200,34 +302,61 @@ export default function AddCarForm() {
                   type="text"
                   name="pickupLocation"
                   placeholder="e.g. Beverly Hills, CA"
-                  className="h-14 w-full rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
+                  className={`h-12 w-full rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                      ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                      : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                    }`}
                 />
               </div>
 
               {/* Availability Status */}
               <div>
-                <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                  }`}>
                   Initial Availability Status
                 </label>
                 <div className="relative">
                   <select
                     name="availabilityStatus"
-                    className="h-14 w-full appearance-none rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 text-white outline-none transition duration-200 focus:border-orange-500/50"
+                    className={`h-12 w-full appearance-none rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                        ? 'border-gray-300 bg-gray-50 text-gray-900 focus:border-teal-500 focus:ring-teal-500/20'
+                        : 'border-zinc-800 bg-[#0d0d0d] text-white focus:border-teal-500 focus:ring-teal-500/20'
+                      }`}
                   >
                     {availabilityOptions.map((status) => (
-                      <option key={status} value={status} className="bg-zinc-950 text-white">
+                      <option key={status} value={status} className={isLight ? 'bg-white' : 'bg-zinc-950'}>
                         {status}
                       </option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">▼</div>
+                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">▼</div>
                 </div>
               </div>
             </div>
 
+            {/* Brand */}
+            <div>
+              <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                }`}>
+                Brand
+              </label>
+              <input
+                required
+                type="text"
+                name="brand"
+                placeholder="e.g. Porsche, BMW, Tesla"
+                className={`h-12 w-full rounded-lg border px-4 text-sm outline-none transition-all duration-200 focus:ring-2 ${isLight
+                    ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                    : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                  }`}
+              />
+            </div>
+
             {/* Description */}
             <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-zinc-400">
+              <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
+                }`}>
+                <FaInfoCircle className="inline mr-1.5 text-teal-500" size={12} />
                 Detailed Vehicle Description
               </label>
               <textarea
@@ -235,22 +364,27 @@ export default function AddCarForm() {
                 rows={4}
                 name="description"
                 placeholder="Describe performance parameters, key technical specifications, and general conditions..."
-                className="w-full rounded-xl border border-zinc-900 bg-[#0d0d0d] px-5 py-4 text-white outline-none transition duration-200 placeholder:text-zinc-600 focus:border-orange-500/50 focus:shadow-[0_0_15px_rgba(249,115,22,0.1)] resize-none"
+                className={`w-full rounded-lg border px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 resize-none ${isLight
+                    ? 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20'
+                    : 'border-zinc-800 bg-[#0d0d0d] text-white placeholder:text-zinc-600 focus:border-teal-500 focus:ring-teal-500/20'
+                  }`}
               />
             </div>
 
             {/* Submit Button */}
-            <motion.button
-              whileHover={{ scale: 1.01, y: -1 }}
-              whileTap={{ scale: 0.99 }}
+            <button
               type="submit"
-              className="mt-6 h-15 w-full rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 text-sm font-bold uppercase tracking-wider text-white shadow-[0_5px_15px_rgba(249,115,22,0.25)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300 cursor-pointer"
+              disabled={isSubmitting}
+              className={`mt-8 w-full rounded-lg py-3.5 text-sm font-bold uppercase tracking-wider transition-all duration-300 ${isLight
+                  ? 'bg-teal-600 text-white hover:bg-teal-700 shadow-md shadow-teal-500/25'
+                  : 'bg-teal-500 text-white hover:bg-teal-600 shadow-md shadow-teal-500/25'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
             >
-              Add Car to Showroom
-            </motion.button>
+              {isSubmitting ? 'Adding Vehicle...' : 'Add Car to Showroom'}
+            </button>
           </form>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
