@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "DriveEase — Elite Luxury Car Rentals",
+  title: "RentCars || Choose You Premium Cars",
   description: "Experience premium car rentals with DriveEase. Book luxury vehicles with seamless delivery, 24/7 support, and white-glove service.",
 };
 
