@@ -8,7 +8,7 @@ const data = await fetch(
 }
 
 
-export const carDetails = async ({id,token}) => {
+export const carDetails = async ({id, token}) => {
 
 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars/${id}`, {
   method: "GET",
