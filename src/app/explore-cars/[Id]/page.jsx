@@ -73,8 +73,8 @@ export default function CarDetailsPage() {
             >
               <div className="relative h-[320px] overflow-hidden rounded-xl sm:h-[480px] lg:h-[650px]">
                 <Image
-                  src={car.imageUrl}
-                  alt={car.carName}
+                  src={car?.imageUrl || '/images/placeholder.jpg'}
+                  alt={car?.carName || 'Car Image'}
                   fill
                   priority
                   className="object-cover transition duration-1000 hover:scale-105"
@@ -125,7 +125,7 @@ export default function CarDetailsPage() {
                 {/* Name */}
                 <h1 className={`text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl line-clamp-2 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
                   }`}>
-                  {car.carName}
+                  {car.carName || 'Car Name'}
                 </h1>
 
                 {/* Pricing Block */}
