@@ -214,10 +214,10 @@ const Navbar = () => {
               ) : (
                 <Link
                   href="/login"
-                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-600 to-teal-500 text-sm font-bold text-white transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5"
+                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-r from-teal-600 to-teal-500 text-sm font-bold text-white transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5"
                 >
                   <span className="relative z-10">Sign In</span>
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-teal-500 to-teal-400 transition-transform duration-300 ease-out" />
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-linear-to-r from-teal-500 to-teal-400 transition-transform duration-300 ease-out" />
                 </Link>
               )}
 
