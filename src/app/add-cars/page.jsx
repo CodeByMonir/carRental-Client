@@ -86,7 +86,6 @@ export default function AddCarForm() {
         setTimeout(() => { router.push("/explore-cars"); }, 1000);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Failed to add car. Please try again.");
     } finally {
       setIsSubmitting(false);

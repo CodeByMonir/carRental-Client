@@ -33,6 +33,7 @@ export default function CarDetailsPage() {
       try {
         const { data: tokenData } = await authClient.token();
         const token = tokenData.token;
+        console.log(token);
         const data = await carDetails({ id: Id, token });
         setCarDetails(data);
       } catch (error) {

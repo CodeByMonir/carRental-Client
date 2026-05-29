@@ -47,9 +47,15 @@ export default function ProfilePage() {
 
     try {
       await authClient.updateUser(userData);
-      alert("Profile updated successfully.");
+      toast.success("Profile updated successfully.", {
+        actionProps: {
+          children: "Success",
+          className: "bg-success text-success-foreground",
+        },
+        description: "Updating your profile",
+      });
     } catch (error) {
-      alert("Failed to update profile. Please try again.");
+      toast.error("Failed to update profile. Please try again.");
     }
   }
 
@@ -58,7 +64,7 @@ export default function ProfilePage() {
     email: dataUser?.email || 'loading',
     image: dataUser?.image || 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=256&auto=format&fit=crop',
     joined: dataUser?.createdAt ? new Date(dataUser.createdAt).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }) : 'Loading',
-    location: "United States",
+    location: "Bangladesh",
   };
 
   useEffect(() => {
@@ -161,8 +167,8 @@ export default function ProfilePage() {
       }`}>
       {/* HERO SECTION - Increased padding for desktop */}
       <div className={`relative overflow-hidden border-b transition-colors duration-300 ${isLight
-          ? 'border-teal-500/20 bg-gradient-to-b from-gray-100 via-gray-50 to-white'
-          : 'border-teal-500/10 bg-gradient-to-b from-[#141414] via-black to-black'
+        ? 'border-teal-500/20 bg-linear-to-b from-gray-100 via-gray-50 to-white'
+        : 'border-teal-500/10 bg-linear-to-b from-[#141414] via-black to-black'
         }`}>
         {/* Glow Effects */}
         <div className={`absolute left-0 top-0 h-80 w-80 rounded-full blur-3xl transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/10'
@@ -219,7 +225,7 @@ export default function ProfilePage() {
             </div>
 
             {/* RIGHT - Actions */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 items-baseline">
               {/* Edit Profile Modal Trigger */}
               <Modal>
                 <Button className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition-all duration-300 ${isLight
@@ -251,7 +257,7 @@ export default function ProfilePage() {
                       </Modal.Header>
                       <Modal.Body className="p-6">
                         <Surface variant="default">
-                          <form onSubmit={onsubmit} className="flex flex-col gap-4">
+                          <form onSubmit={onsubmit} className={`flex flex-col gap-4 ${isLight ? 'bg-gray-50' : 'bg-gray-900'}`}>
                             <TextField isRequired className="w-full" name="name" type="text">
                               <Label className={isLight ? 'text-gray-700' : 'text-gray-300'}>Full Name</Label>
                               <Input placeholder="Enter your name" className={`${isLight ? 'bg-gray-50' : 'bg-gray-800'}`} />
@@ -279,7 +285,10 @@ export default function ProfilePage() {
 
               {/* Sign Out Button */}
               <button
-                onClick={async () => { await authClient.signOut(); router.refresh(); }}
+                onClick={async () => {
+                  await authClient.signOut();
+                  router.refresh();
+                }}
                 className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition-all duration-300 ${isLight
                     ? 'border-red-500/20 bg-red-500/10 text-red-600 hover:bg-red-500 hover:text-white'
                     : 'border-red-500/20 bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white'
