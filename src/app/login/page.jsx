@@ -57,16 +57,15 @@ export default function LoginPage() {
     return (
         <main className={`relative flex min-h-screen overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#0D0D0D]'
             }`}>
-            {/* Animated Gradient Background */}
+                
             <div className="absolute inset-0 z-0">
                 <div className={`absolute inset-0 transition-all duration-1000 ${isLight
-                        ? 'bg-gradient-to-br from-gray-100 via-white to-gray-50'
-                        : 'bg-gradient-to-br from-gray-950 via-black to-gray-950'
+                        ? 'bg-linear-to-br from-gray-100 via-white to-gray-50'
+                        : 'bg-linear-to-br from-gray-950 via-black to-gray-950'
                     }`} />
 
-                {/* Animated Gradient Orbs */}
                 <motion.div
-                    className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px]"
+                    className="absolute top-0 left-0 w-125 h-125 rounded-full blur-[120px]"
                     style={{
                         background: isLight
                             ? 'radial-gradient(circle, rgba(13,148,136,0.15) 0%, rgba(13,148,136,0) 70%)'
@@ -80,7 +79,7 @@ export default function LoginPage() {
                     transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div
-                    className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px]"
+                    className="absolute bottom-0 right-0 w-150 h-150 rounded-full blur-[140px]"
                     style={{
                         background: isLight
                             ? 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0) 70%)'
@@ -94,7 +93,7 @@ export default function LoginPage() {
                     transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 />
                 <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[100px]"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 h-100 rounded-full blur-[100px]"
                     style={{
                         background: isLight
                             ? 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0) 70%)'
@@ -107,12 +106,10 @@ export default function LoginPage() {
                     transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
                 />
 
-                {/* Grid Pattern Overlay */}
-                <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? 'bg-[radial-gradient(#0D9488_1px,transparent_1px)] [background-size:40px_40px]' : 'bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px]'
+                <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? 'bg-[radial-gradient(#0D9488_1px,transparent_1px)] bg-size-[40px_40px]' : 'bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[40px_40px]'
                     }`} />
             </div>
 
-            {/* Left Side - Brand Section (Desktop Only) */}
             <section className="relative z-10 hidden lg:flex lg:w-1/2 overflow-hidden flex-col justify-center p-12">
                 <div className="max-w-lg">
                     <motion.div
@@ -187,22 +184,20 @@ export default function LoginPage() {
                 </div>
             </section>
 
-            {/* Right Side - Login Form */}
             <section className="relative z-10 flex w-full items-center justify-center px-6 py-16 lg:py-24 lg:w-1/2">
                 {/* Form Background Glow */}
-                <div className={`absolute h-[500px] w-[500px] rounded-full blur-3xl transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+                <div className={`absolute h-125 w-125 rounded-full blur-3xl transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
                     }`} />
 
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className={`relative z-10 w-full max-w-[520px] rounded-2xl border p-8 shadow-2xl transition-all duration-300 md:p-12 backdrop-blur-xl ${isLight
+                    className={`relative z-10 w-full max-w-130 rounded-2xl border p-8 shadow-2xl transition-all duration-300 md:p-12 backdrop-blur-xl ${isLight
                             ? 'bg-white/80 border-gray-200 shadow-gray-200'
                             : 'bg-black/40 border-white/10'
                         }`}
                 >
-                    {/* Header */}
                     <div className="mb-8 text-center">
                         <motion.div
                             initial={{ scale: 0 }}
@@ -223,12 +218,10 @@ export default function LoginPage() {
                         </p>
                     </div>
 
-                    {/* Login Form */}
                     <Form
                         className="flex w-full flex-col gap-5"
                         onSubmit={onSubmit}
                     >
-                        {/* Email */}
                         <TextField
                             isRequired
                             name="email"
@@ -253,7 +246,6 @@ export default function LoginPage() {
                             <FieldError />
                         </TextField>
 
-                        {/* Password */}
                         <TextField
                             isRequired
                             name="password"
@@ -298,7 +290,6 @@ export default function LoginPage() {
                             <FieldError />
                         </TextField>
 
-                        {/* Forgot Password Link */}
                         <div className="text-right">
                             <Link
                                 href="/forgot-password"
@@ -309,7 +300,6 @@ export default function LoginPage() {
                             </Link>
                         </div>
 
-                        {/* Submit Button */}
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
@@ -323,7 +313,6 @@ export default function LoginPage() {
                         </motion.button>
                     </Form>
 
-                    {/* Divider */}
                     <div className="flex items-center gap-4 my-6">
                         <div className={`h-px flex-1 ${isLight ? 'bg-gray-200' : 'bg-white/10'}`} />
                         <span className={`text-xs uppercase tracking-widest ${isLight ? 'text-gray-500' : 'text-gray-500'}`}>
@@ -332,7 +321,6 @@ export default function LoginPage() {
                         <div className={`h-px flex-1 ${isLight ? 'bg-gray-200' : 'bg-white/10'}`} />
                     </div>
 
-                    {/* Google Sign In Button */}
                     <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -347,7 +335,6 @@ export default function LoginPage() {
                         Google
                     </motion.button>
 
-                    {/* Sign Up Link */}
                     <p className={`mt-6 text-center text-sm transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-gray-400'
                         }`}>
                         Don't have an account?{' '}

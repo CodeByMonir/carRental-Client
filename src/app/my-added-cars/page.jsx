@@ -10,12 +10,11 @@ import UpdateCarModal from "@/components/UpdateBtn";
 import { useTheme } from "@/providers/ThemeProvider";
 import { FaCar, FaEdit, FaTrash, FaPlus, FaMapMarkerAlt, FaDollarSign } from "react-icons/fa";
 
-// Shimmering Row Skeleton Component for Listings
 const ListingRowSkeleton = ({ isLight }) => (
   <div className={`flex flex-col gap-6 rounded-2xl border p-5 shadow-md transition-colors duration-300 md:flex-row md:items-center md:justify-between ${isLight ? 'border-gray-200 bg-white' : 'border-zinc-900 bg-[#0a0a0a]'
     }`}>
     <div className="flex flex-col gap-5 md:flex-row md:items-center w-full">
-      <div className={`relative h-[130px] w-full rounded-xl shimmer md:w-[220px] ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+      <div className={`relative h-32.5 w-full rounded-xl shimmer md:w-55 ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
         }`} />
       <div className="flex-1 space-y-3">
         <div className={`h-7 w-48 rounded-lg shimmer ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
@@ -89,14 +88,14 @@ export default function MyListingsPage() {
   return (
     <section className={`relative min-h-screen w-full px-4 py-16 sm:px-6 md:px-10 lg:px-20 lg:py-24 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
-      {/* Soft ambient backlights */}
-      <div className={`absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+        
+      <div className={`absolute top-1/4 left-1/4 w-100 h-100 rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
         }`} />
-      <div className={`absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
+      <div className={`absolute bottom-1/4 right-1/4 w-100 h-100 rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Header */}
+        
         <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <span className={`text-xs font-bold uppercase tracking-[0.35em] block mb-3 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
@@ -107,14 +106,13 @@ export default function MyListingsPage() {
               }`}>
               My Listings
             </h1>
-            <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full my-3" />
+            <div className="h-1 w-20 bg-linear-to-r from-teal-500 to-teal-400 rounded-full my-3" />
             <p className={`mt-4 max-w-2xl text-base leading-relaxed font-light transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
               }`}>
               Manage your premium car fleet, update pricing, customize specifications, and control vehicle availability from one unified cockpit dashboard.
             </p>
           </div>
 
-          {/* Add Car Button */}
           <Link href="/add-cars">
             <button className={`flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold uppercase tracking-wider transition-all duration-300 ${isLight
                 ? 'bg-teal-600 text-white hover:bg-teal-700 shadow-md shadow-teal-500/25'
@@ -126,7 +124,6 @@ export default function MyListingsPage() {
           </Link>
         </div>
 
-        {/* Listings Stack */}
         {loading || isPending ? (
           <div className="space-y-5">
             {Array.from({ length: 3 }).map((_, index) => (
@@ -134,7 +131,7 @@ export default function MyListingsPage() {
             ))}
           </div>
         ) : listings.length === 0 ? (
-          /* Empty state */
+          
           <div className={`rounded-2xl border p-12 text-center max-w-lg mx-auto transition-colors duration-300 ${isLight
               ? 'border-gray-200 bg-white'
               : 'border-zinc-900 bg-[#080808]'
@@ -164,10 +161,10 @@ export default function MyListingsPage() {
                     : 'border-zinc-900 bg-[#080808] hover:shadow-zinc-800'
                   }`}
               >
-                {/* Left content */}
+                
                 <div className="flex flex-col gap-4 md:flex-row md:items-center flex-1">
-                  {/* Image */}
-                  <div className="relative h-[110px] w-full overflow-hidden rounded-xl md:w-[180px]">
+                  
+                  <div className="relative h-27.5 w-full overflow-hidden rounded-xl md:w-45">
                     <Image
                       src={car.imageUrl}
                       alt={car.carName}
@@ -177,7 +174,6 @@ export default function MyListingsPage() {
                     />
                   </div>
 
-                  {/* Info text */}
                   <div className="flex-1">
                     <h2 className={`text-xl font-bold tracking-tight mb-2 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
                       }`}>
@@ -206,7 +202,6 @@ export default function MyListingsPage() {
                       </div>
                     </div>
 
-                    {/* Availability Status */}
                     <div className="mt-3 flex items-center gap-2">
                       <div className={`h-2 w-2 rounded-full ${car.availabilityStatus === "Available" ? "bg-teal-500" : "bg-rose-500"
                         }`} />
@@ -220,12 +215,9 @@ export default function MyListingsPage() {
                   </div>
                 </div>
 
-                {/* Buttons group */}
                 <div className="flex items-center gap-3 self-end md:self-center">
-                  {/* Edit Modal Button */}
                   <UpdateCarModal car={car} />
 
-                  {/* Delete Alert Dialog */}
                   <AlertDialog>
                     <Button className={`rounded-xl font-semibold text-xs px-4 py-2.5 h-10 transition-all duration-300 ${isLight
                         ? 'bg-red-100 text-red-600 border border-red-200 hover:bg-red-600 hover:text-white'
@@ -236,7 +228,7 @@ export default function MyListingsPage() {
                     </Button>
                     <AlertDialog.Backdrop>
                       <AlertDialog.Container>
-                        <AlertDialog.Dialog className={`sm:max-w-[400px] rounded-2xl p-6 shadow-2xl transition-colors duration-300 ${isLight ? 'bg-white border border-gray-200' : 'bg-zinc-950 border border-zinc-900'
+                        <AlertDialog.Dialog className={`sm:max-w-100 rounded-2xl p-6 shadow-2xl transition-colors duration-300 ${isLight ? 'bg-white border border-gray-200' : 'bg-zinc-950 border border-zinc-900'
                           }`}>
                           <AlertDialog.CloseTrigger />
                           <AlertDialog.Header>
@@ -277,7 +269,6 @@ export default function MyListingsPage() {
         )}
       </div>
 
-      {/* Add shimmer animation styles */}
       <style jsx global>{`
         @keyframes shimmer {
           0% { background-position: -1000px 0; }
