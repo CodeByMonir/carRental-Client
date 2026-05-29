@@ -15,7 +15,7 @@ const CardSkeleton = ({ isLight }) => (
       : 'border-zinc-800/80 bg-zinc-950/60'
     }`}>
       
-    <div className={`relative h-[240px] w-full rounded-[24px] shimmer mb-6 ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
+    <div className={`relative h-60 w-full rounded-[24px] shimmer mb-6 ${isLight ? 'bg-gray-200' : 'bg-zinc-800'
       }`} />
 
     <div className="space-y-4">
@@ -84,7 +84,7 @@ export default function FeaturedFleet() {
     <section className={`relative w-full px-4 py-16 sm:px-6 md:px-10 lg:px-20 lg:py-24 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
         
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -158,7 +158,7 @@ export default function FeaturedFleet() {
                   }`}
               >
                 <div>
-                  <div className="relative h-[250px] w-full overflow-hidden p-3 pb-0">
+                  <div className="relative h-62.5 w-full overflow-hidden p-3 pb-0">
                     <div className="relative h-full w-full overflow-hidden rounded-[24px]">
                       <Image
                         src={car.imageUrl}
@@ -169,8 +169,8 @@ export default function FeaturedFleet() {
                       />
 
                       <div className={`absolute inset-0 ${isLight
-                          ? 'bg-gradient-to-t from-white/90 via-white/10 to-transparent'
-                          : 'bg-gradient-to-t from-black/90 via-black/10 to-transparent'
+                          ? 'bg-linear-to-t from-white/90 via-white/10 to-transparent'
+                          : 'bg-linear-to-t from-black/90 via-black/10 to-transparent'
                         }`} />
 
                       <div className={`absolute right-4 top-4 flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold backdrop-blur-md transition-colors duration-300 ${isLight

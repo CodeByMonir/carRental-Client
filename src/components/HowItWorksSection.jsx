@@ -50,9 +50,9 @@ export default function HowItWorksSection() {
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block w-[55%] h-px pointer-events-none transition-colors duration-300 ${isLight ? "bg-linear-to-r from-transparent via-teal-500/20 to-transparent" : "bg-linear-to-r from-transparent via-teal-500/15 to-transparent"
         }`} />
 
-      <div className={`absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? "bg-teal-500/10" : "bg-teal-600/5"
+      <div className={`absolute top-0 right-0 w-100 h-100 rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? "bg-teal-500/10" : "bg-teal-600/5"
         }`} />
-      <div className={`absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none transition-colors duration-300 ${isLight ? "bg-blue-500/10" : "bg-blue-600/5"
+      <div className={`absolute bottom-0 left-0 w-75 h-75 rounded-full blur-[100px] pointer-events-none transition-colors duration-300 ${isLight ? "bg-blue-500/10" : "bg-blue-600/5"
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -96,7 +96,7 @@ export default function HowItWorksSection() {
             >
               
               <div className="flex items-start justify-between">
-                <div className={`relative h-16 w-16 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${step.bgColor} ${step.borderColor} border`}>
+                <div className={`relative h-16 w-16 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110 ${step.bgColor} ${step.borderColor} border`}>
                   <step.icon className={`h-7 w-7 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
                     }`} />
                 </div>
@@ -127,7 +127,7 @@ export default function HowItWorksSection() {
                 </button>
               </div>
 
-              <div className={`absolute bottom-0 left-8 right-8 h-0.5 rounded-full transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${isLight ? 'bg-gradient-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0' : 'bg-gradient-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0'
+              <div className={`absolute bottom-0 left-8 right-8 h-0.5 rounded-full transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${isLight ? 'bg-linear-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0' : 'bg-linear-to-r from-teal-500/0 via-teal-500/50 to-teal-500/0'
                 }`} />
 
               {idx < steps.length - 1 && (
