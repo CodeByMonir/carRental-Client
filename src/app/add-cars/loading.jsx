@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useTheme } from "@/providers/ThemeProvider";
 import { FaCar, FaCog, FaTachometerAlt, FaSpinner } from "react-icons/fa";
 
-// ── Config — edit freely ─────────────────────────────────────────
 const MESSAGES = [
   "Finding your perfect ride...",
   "Checking vehicle availability...",
@@ -18,7 +17,6 @@ const MESSAGES = [
 const BRAND = "RentWheels";
 const SUBTITLE = "Premium Car Rental Service";
 
-// ── Speed tick marks around the rim ─────────────────────────────
 const TICKS = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
 
 export default function LoadingSpinner() {
@@ -36,14 +34,12 @@ export default function LoadingSpinner() {
   if (!mounted) return null;
 
   return (
-    <div className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 ${isLight ? 'bg-gradient-to-br from-gray-50 to-gray-100' : 'bg-gradient-to-br from-[#0D0D0D] to-black'
+    <div className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 ${isLight ? 'bg-linear-to-br from-gray-50 to-gray-100' : 'bg-linear-to-br from-[#0D0D0D] to-black'
       }`}>
 
-      {/* Animated Background Grid */}
-      <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? 'bg-[radial-gradient(#0D9488_1px,transparent_1px)] [background-size:40px_40px]' : 'bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px]'
+      <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? 'bg-[radial-gradient(#0D9488_1px,transparent_1px)] bg-size-[40px_40px]' : 'bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[40px_40px]'
         }`} />
 
-      {/* Floating Particles */}
       {[...Array(20)].map((_, i) => (
         <motion.div
           key={i}
@@ -66,7 +62,6 @@ export default function LoadingSpinner() {
         />
       ))}
 
-      {/* Background glow blobs */}
       <motion.div
         className={`absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-500/5'
           }`}
@@ -86,17 +81,14 @@ export default function LoadingSpinner() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Main content */}
       <motion.main
         className="relative z-10 flex flex-col items-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Spinner */}
         <div className="relative w-52 h-52 mb-12">
 
-          {/* Outer glow pulse */}
           <motion.div
             className={`absolute inset-0 rounded-full blur-2xl transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-500/10'
               }`}
@@ -104,11 +96,9 @@ export default function LoadingSpinner() {
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          {/* Static rim */}
           <div className={`absolute inset-0 rounded-full transition-colors duration-300 ${isLight ? 'border border-gray-300' : 'border border-white/5'
             }`} />
 
-          {/* Spinning arc - Outer */}
           <motion.div
             className={`absolute inset-0 rounded-full border-4 border-transparent transition-colors duration-300 ${isLight ? 'border-t-teal-500 border-r-teal-500' : 'border-t-teal-500 border-r-teal-500'
               }`}
@@ -117,7 +107,6 @@ export default function LoadingSpinner() {
             transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Spinning arc - Inner (reverse) */}
           <motion.div
             className={`absolute inset-[10%] rounded-full border-2 border-transparent transition-colors duration-300 ${isLight ? 'border-b-teal-400 border-l-teal-400' : 'border-b-teal-400 border-l-teal-400'
               }`}
@@ -125,7 +114,6 @@ export default function LoadingSpinner() {
             transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Tick marks */}
           {TICKS.map((deg) => (
             <div
               key={deg}
@@ -137,12 +125,10 @@ export default function LoadingSpinner() {
             </div>
           ))}
 
-          {/* Center hub */}
           <div className={`absolute inset-[30%] rounded-full backdrop-blur-xl border transition-colors duration-300 flex items-center justify-center ${isLight
               ? 'bg-white/60 border-gray-200'
               : 'bg-[#1A1A1A]/60 border-white/8'
             }`}>
-            {/* Center dot */}
             <div className="relative">
               <motion.div
                 className="w-3 h-3 rounded-full bg-teal-500 shadow-[0_0_12px_rgba(13,148,136,0.6)]"
@@ -156,7 +142,6 @@ export default function LoadingSpinner() {
               />
             </div>
 
-            {/* Needle */}
             <motion.div
               className="absolute bottom-1/2 left-1/2 -translate-x-1/2 w-0.5 origin-bottom"
               style={{
@@ -171,7 +156,6 @@ export default function LoadingSpinner() {
           </div>
         </div>
 
-        {/* Rotating text */}
         <div className="text-center space-y-4 h-20 flex flex-col items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.h1
@@ -201,7 +185,6 @@ export default function LoadingSpinner() {
           </div>
         </div>
 
-        {/* Progress Bar */}
         <div className="w-80 mt-10">
           <div className={`h-1.5 rounded-full overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-200' : 'bg-white/10'
             }`}>
@@ -225,7 +208,6 @@ export default function LoadingSpinner() {
         </div>
       </motion.main>
 
-      {/* Brand footer */}
       <motion.footer
         className="fixed bottom-8 flex flex-col items-center gap-2 select-none"
         initial={{ opacity: 0, y: 20 }}
@@ -258,8 +240,8 @@ export default function LoadingSpinner() {
         </div>
 
         <div className={`h-px w-20 transition-all duration-300 ${isLight
-            ? 'bg-gradient-to-r from-transparent via-teal-500/50 to-transparent'
-            : 'bg-gradient-to-r from-transparent via-white/30 to-transparent'
+            ? 'bg-linear-to-r from-transparent via-teal-500/50 to-transparent'
+            : 'bg-linear-to-r from-transparent via-white/30 to-transparent'
           }`} />
 
         <div className="flex gap-4 mt-2">

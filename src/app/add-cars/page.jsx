@@ -97,19 +97,18 @@ export default function AddCarForm() {
   return (
     <section className={`relative min-h-screen w-full px-6 py-20 md:px-12 lg:px-20 lg:py-32 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
-      {/* Decorative ambient glowing backdrops */}
-      <div className={`absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+      <div className={`absolute top-1/4 left-1/4 w-125 h-125 rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
         }`} />
-      <div className={`absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
+      <div className={`absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
         }`} />
 
       <div className="mx-auto max-w-5xl relative z-10">
-        {/* Form Container Card */}
+        
         <div className={`rounded-2xl border p-6 shadow-xl transition-colors duration-300 md:p-10 lg:p-12 ${isLight
             ? 'border-gray-200 bg-white'
             : 'border-zinc-900 bg-gradient-to-b from-zinc-950 to-black'
           }`}>
-          {/* Header */}
+            
           <div className="mb-10">
             <span className={`text-xs font-bold uppercase tracking-[0.35em] block mb-2 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
               }`}>
@@ -129,11 +128,11 @@ export default function AddCarForm() {
             </p>
           </div>
 
-          {/* Form */}
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Grid for compact fields */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Car Name */}
+              
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -152,7 +151,6 @@ export default function AddCarForm() {
                 />
               </div>
 
-              {/* Daily Rent Price */}
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -173,7 +171,7 @@ export default function AddCarForm() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Car Type */}
+              
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -197,7 +195,6 @@ export default function AddCarForm() {
                 </div>
               </div>
 
-              {/* Seat Capacity */}
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -218,7 +215,7 @@ export default function AddCarForm() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Transmission */}
+              
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -243,7 +240,6 @@ export default function AddCarForm() {
                 </div>
               </div>
 
-              {/* Fuel Type */}
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -269,7 +265,6 @@ export default function AddCarForm() {
               </div>
             </div>
 
-            {/* Image URL */}
             <div>
               <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                 }`}>
@@ -289,7 +284,7 @@ export default function AddCarForm() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Pickup Location */}
+
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -308,7 +303,6 @@ export default function AddCarForm() {
                 />
               </div>
 
-              {/* Availability Status */}
               <div>
                 <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
@@ -333,7 +327,6 @@ export default function AddCarForm() {
               </div>
             </div>
 
-            {/* Brand */}
             <div>
               <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                 }`}>
@@ -351,7 +344,6 @@ export default function AddCarForm() {
               />
             </div>
 
-            {/* Description */}
             <div>
               <label className={`mb-2 block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                 }`}>
@@ -370,7 +362,6 @@ export default function AddCarForm() {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}

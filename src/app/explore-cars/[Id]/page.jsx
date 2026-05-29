@@ -54,7 +54,7 @@ export default function CarDetailsPage() {
       ) : (
         <section className={`relative min-h-screen w-full px-4 py-12 sm:px-6 md:px-10 lg:px-20 lg:py-24 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
           }`}>
-          {/* Decorative glows */}
+
           <div className={`absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
             }`} />
           <div className={`absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
@@ -62,7 +62,6 @@ export default function CarDetailsPage() {
 
           <div className="relative z-10 mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
 
-            {/* Left Side: Stunning Large Image Card */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -72,7 +71,7 @@ export default function CarDetailsPage() {
                   : 'border-zinc-900 bg-zinc-950/60'
                 }`}
             >
-              <div className="relative h-[320px] overflow-hidden rounded-xl sm:h-[480px] lg:h-[650px]">
+              <div className="relative h-80 overflow-hidden rounded-xl sm:h-120 lg:h-162.5">
                 <Image
                   src={car?.imageUrl || '/images/placeholder.jpg'}
                   alt={car?.carName || 'Car Image'}
@@ -81,7 +80,7 @@ export default function CarDetailsPage() {
                   className="object-cover transition duration-1000 hover:scale-105"
                   unoptimized
                 />
-                {/* Rating Badge */}
+                
                 <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-full bg-black/50 backdrop-blur-md px-3 py-1.5 text-xs font-bold text-white">
                   <FaStar className="text-yellow-500 text-xs" />
                   4.9
@@ -93,7 +92,6 @@ export default function CarDetailsPage() {
               </div>
             </motion.div>
 
-            {/* Right Side: Premium Showroom Details */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -104,7 +102,7 @@ export default function CarDetailsPage() {
                 }`}
             >
               <div>
-                {/* Category Badge */}
+                
                 <div className="flex items-center gap-2 mb-4">
                   <span className={`rounded-full border px-4 py-1 text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isLight
                       ? 'bg-teal-100 border-teal-200 text-teal-700'
@@ -123,13 +121,11 @@ export default function CarDetailsPage() {
                   )}
                 </div>
 
-                {/* Name */}
                 <h1 className={`text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl line-clamp-2 transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
                   }`}>
                   {car.carName || 'Car Name'}
                 </h1>
 
-                {/* Pricing Block */}
                 <div className={`mt-6 flex items-baseline gap-2 pb-6 border-b transition-colors duration-300 ${isLight ? 'border-gray-200' : 'border-zinc-900'
                   }`}>
                   <span className={`text-4xl font-black sm:text-5xl transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-400'
@@ -142,16 +138,14 @@ export default function CarDetailsPage() {
                   </span>
                 </div>
 
-                {/* Description */}
                 <p className={`mt-6 text-base leading-relaxed font-light transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
                   }`}>
                   {car.description}
                 </p>
 
-                {/* High-Tech Spec Instruments Panel */}
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Booked user count */}
-                  <div className={`flex items-center gap-4 rounded-xl border p-4 transition-all hover:scale-[1.02] transition-colors duration-300 ${isLight
+                  
+                  <div className={`flex items-center gap-4 rounded-xl border p-4 hover:scale-[1.02] transition-colors duration-300 ${isLight
                       ? 'border-gray-200 bg-gray-50 hover:border-teal-500/30'
                       : 'border-zinc-900 bg-zinc-950/80 hover:border-teal-500/20'
                     }`}>
@@ -171,8 +165,7 @@ export default function CarDetailsPage() {
                     </div>
                   </div>
 
-                  {/* Seat count */}
-                  <div className={`flex items-center gap-4 rounded-xl border p-4 transition-all hover:scale-[1.02] transition-colors duration-300 ${isLight
+                  <div className={`flex items-center gap-4 rounded-xl border p-4 hover:scale-[1.02] transition-colors duration-300 ${isLight
                       ? 'border-gray-200 bg-gray-50 hover:border-teal-500/30'
                       : 'border-zinc-900 bg-zinc-950/80 hover:border-teal-500/20'
                     }`}>
@@ -192,8 +185,7 @@ export default function CarDetailsPage() {
                     </div>
                   </div>
 
-                  {/* Fuel Type */}
-                  <div className={`flex items-center gap-4 rounded-xl border p-4 transition-all hover:scale-[1.02] transition-colors duration-300 ${isLight
+                  <div className={`flex items-center gap-4 rounded-xl border p-4 hover:scale-[1.02] transition-colors duration-300 ${isLight
                       ? 'border-gray-200 bg-gray-50 hover:border-teal-500/30'
                       : 'border-zinc-900 bg-zinc-950/80 hover:border-teal-500/20'
                     }`}>
@@ -213,8 +205,7 @@ export default function CarDetailsPage() {
                     </div>
                   </div>
 
-                  {/* Transmission */}
-                  <div className={`flex items-center gap-4 rounded-xl border p-4 transition-all hover:scale-[1.02] transition-colors duration-300 ${isLight
+                  <div className={`flex items-center gap-4 rounded-xl border p-4 hover:scale-[1.02] transition-colors duration-300 ${isLight
                       ? 'border-gray-200 bg-gray-50 hover:border-teal-500/30'
                       : 'border-zinc-900 bg-zinc-950/80 hover:border-teal-500/20'
                     }`}>
@@ -234,8 +225,7 @@ export default function CarDetailsPage() {
                     </div>
                   </div>
 
-                  {/* Location spec */}
-                  <div className={`sm:col-span-2 flex items-center gap-4 rounded-xl border p-4 transition-all hover:scale-[1.02] transition-colors duration-300 ${isLight
+                  <div className={`sm:col-span-2 flex items-center gap-4 rounded-xl border p-4 hover:scale-[1.02] transition-colors duration-300 ${isLight
                       ? 'border-gray-200 bg-gray-50 hover:border-teal-500/30'
                       : 'border-zinc-900 bg-zinc-950/80 hover:border-teal-500/20'
                     }`}>
@@ -255,8 +245,7 @@ export default function CarDetailsPage() {
                     </div>
                   </div>
 
-                  {/* Owner details */}
-                  <div className={`sm:col-span-2 flex items-center gap-4 rounded-xl border p-4 transition-all hover:scale-[1.02] transition-colors duration-300 ${isLight
+                  <div className={`sm:col-span-2 flex items-center gap-4 rounded-xl border p-4 hover:scale-[1.02] transition-colors duration-300 ${isLight
                       ? 'border-gray-200 bg-gray-50 hover:border-teal-500/30'
                       : 'border-zinc-900 bg-zinc-950/80 hover:border-teal-500/20'
                     }`}>
@@ -277,10 +266,9 @@ export default function CarDetailsPage() {
                   </div>
                 </div>
 
-                {/* Operational Status Display */}
                 <div className={`mt-8 rounded-xl border p-6 flex justify-between items-center transition-colors duration-300 ${isLight
-                    ? 'border-gray-200 bg-gradient-to-r from-gray-50 to-white'
-                    : 'border-zinc-900 bg-gradient-to-r from-[#0d0d0d] to-[#040404]'
+                    ? 'border-gray-200 bg-linear-to-r from-gray-50 to-white'
+                    : 'border-zinc-900 bg-linear-to-r from-[#0d0d0d] to-[#040404]'
                   }`}>
                   <div>
                     <span className={`text-[10px] font-bold uppercase tracking-[0.35em] transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-zinc-500'
@@ -301,7 +289,6 @@ export default function CarDetailsPage() {
                 </div>
               </div>
 
-              {/* Action Buttons Section */}
               <div className="mt-8">
                 {car.availabilityStatus === "Available" ? (
                   <BookingModal car={car} />
