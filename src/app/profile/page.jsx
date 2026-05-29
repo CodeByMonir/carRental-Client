@@ -165,12 +165,12 @@ export default function ProfilePage() {
   return (
     <section className={`min-h-screen transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-black'
       }`}>
-      {/* HERO SECTION - Increased padding for desktop */}
+        
       <div className={`relative overflow-hidden border-b transition-colors duration-300 ${isLight
         ? 'border-teal-500/20 bg-linear-to-b from-gray-100 via-gray-50 to-white'
         : 'border-teal-500/10 bg-linear-to-b from-[#141414] via-black to-black'
         }`}>
-        {/* Glow Effects */}
+          
         <div className={`absolute left-0 top-0 h-80 w-80 rounded-full blur-3xl transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/10'
           }`} />
         <div className={`absolute right-0 top-0 h-80 w-80 rounded-full blur-3xl transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/10'
@@ -178,9 +178,9 @@ export default function ProfilePage() {
 
         <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 lg:py-24 md:px-10 lg:px-16">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-            {/* LEFT - User Info */}
+            
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-              {/* Avatar - Larger on desktop */}
+              
               <div className={`relative h-28 w-28 lg:h-32 lg:w-32 overflow-hidden rounded-full border-4 transition-colors duration-300 ${isLight ? 'border-teal-500/30' : 'border-teal-500/30'
                 }`}>
                 <Image
@@ -192,7 +192,7 @@ export default function ProfilePage() {
                 />
               </div>
 
-              {/* Info */}
+
               <div>
                 
 
@@ -224,9 +224,9 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* RIGHT - Actions */}
+
             <div className="flex flex-wrap gap-3 items-baseline">
-              {/* Edit Profile Modal Trigger */}
+              
               <Modal>
                 <Button className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition-all duration-300 ${isLight
                     ? 'border-gray-300 bg-white text-gray-700 hover:border-teal-500 hover:text-teal-600'
@@ -283,7 +283,7 @@ export default function ProfilePage() {
                 </Modal.Backdrop>
               </Modal>
 
-              {/* Sign Out Button */}
+
               <button
                 onClick={async () => {
                   await authClient.signOut();
@@ -302,9 +302,9 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* CONTENT SECTION - Increased padding for desktop */}
+
       <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16 md:px-10 lg:px-16">
-        {/* STATS CARDS - Larger padding on desktop */}
+        
         <div className="grid gap-6 md:gap-5 md:grid-cols-3">
           {dataLoading
             ? Array.from({ length: 3 }).map((_, idx) => (
@@ -338,7 +338,7 @@ export default function ProfilePage() {
             ))}
         </div>
 
-        {/* QUICK ACTIONS - Increased padding and spacing */}
+
         <div className="mt-14 lg:mt-16">
           <div className="mb-8">
             <h2 className={`text-2xl lg:text-3xl font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>
@@ -384,9 +384,8 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* LOWER GRID - Bookings & Account Details */}
         <div className="mt-14 lg:mt-16 grid gap-6 lg:grid-cols-2">
-          {/* RECENT BOOKINGS */}
+          
           <div className={`rounded-2xl border overflow-hidden transition-colors duration-300 ${isLight ? 'border-gray-200 bg-white' : 'border-teal-500/10 bg-zinc-950'
             }`}>
             <div className={`flex items-center justify-between border-b p-6 ${isLight ? 'border-gray-200' : 'border-zinc-800'
@@ -452,7 +451,6 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* ACCOUNT DETAILS */}
           <div className={`rounded-2xl border overflow-hidden transition-colors duration-300 ${isLight ? 'border-gray-200 bg-white' : 'border-teal-500/10 bg-zinc-950'
             }`}>
             <div className={`flex items-center justify-between border-b p-6 ${isLight ? 'border-gray-200' : 'border-zinc-800'
