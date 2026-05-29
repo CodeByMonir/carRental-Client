@@ -73,7 +73,6 @@ export default function BookingModal({ car }) {
 
     return (
         <>
-            {/* Book Now Button */}
             <button
                 onClick={() => setIsOpen(true)}
                 className={`w-full rounded-xl py-3.5 text-sm font-bold uppercase tracking-wider transition-colors ${isLight
@@ -84,19 +83,17 @@ export default function BookingModal({ car }) {
                 Book Now
             </button>
 
-            {/* Modal */}
             {isOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
-                    {/* Backdrop */}
+                    
                     <div
                         className="fixed inset-0 bg-black/60"
                         onClick={() => setIsOpen(false)}
                     />
 
-                    {/* Modal Container */}
                     <div className={`relative w-full max-w-md rounded-2xl shadow-xl ${isLight ? 'bg-white' : 'bg-gray-900'
                         }`}>
-                        {/* Header */}
+
                         <div className={`p-5 border-b ${isLight ? 'border-gray-200' : 'border-gray-800'
                             }`}>
                             <div className="flex items-center justify-between">
@@ -122,7 +119,6 @@ export default function BookingModal({ car }) {
                             </div>
                         </div>
 
-                        {/* Car Details Summary */}
                         <div className={`p-5 border-b ${isLight ? 'border-gray-200' : 'border-gray-800'
                             }`}>
                             <div className="flex gap-3">
@@ -154,10 +150,9 @@ export default function BookingModal({ car }) {
                             </div>
                         </div>
 
-                        {/* Form */}
                         <form onSubmit={handleBooking}>
                             <div className="p-5 space-y-4">
-                                {/* Driver Needed */}
+                                
                                 <div>
                                     <label className={`block text-sm font-medium mb-1.5 ${isLight ? 'text-gray-700' : 'text-gray-300'
                                         }`}>
@@ -176,7 +171,6 @@ export default function BookingModal({ car }) {
                                     </select>
                                 </div>
 
-                                {/* Special Note */}
                                 <div>
                                     <label className={`block text-sm font-medium mb-1.5 ${isLight ? 'text-gray-700' : 'text-gray-300'
                                         }`}>
@@ -192,12 +186,9 @@ export default function BookingModal({ car }) {
                                             }`}
                                     />
                                 </div>
-
-                                {/* Booking Summary */}
                                 
                             </div>
 
-                            {/* Footer */}
                             <div className={`p-5 border-t flex gap-3 ${isLight ? 'border-gray-200' : 'border-gray-800'
                                 }`}>
                                 <button

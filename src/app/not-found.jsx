@@ -23,11 +23,11 @@ export default function NotFound() {
 
   return (
     <div className={`min-h-screen transition-colors duration-500 flex items-center justify-center px-4 py-20 ${isLight
-        ? "bg-gradient-to-br from-gray-50 to-gray-100"
-        : "bg-gradient-to-br from-gray-900 to-gray-950"
+        ? "bg-linear-to-br from-gray-50 to-gray-100"
+        : "bg-linear-to-br from-gray-900 to-gray-950"
       }`}>
       <div className="max-w-2xl mx-auto text-center">
-        {/* Animated Car Icon */}
+        
         <div className="relative mb-8">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className={`w-32 h-32 rounded-full animate-ping opacity-75 transition-colors duration-300 ${isLight ? "bg-teal-200" : "bg-teal-500/20"
