@@ -81,9 +81,9 @@ export default function TestimonialsSection() {
   return (
     <section className={`relative w-full px-6 py-20 md:px-12 lg:px-20 lg:py-28 overflow-hidden transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
-      <div className={`absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-600/5'
+      <div className={`absolute top-1/2 left-0 w-100 h-100 rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-600/5'
         }`} />
-      <div className={`absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-600/5'
+      <div className={`absolute bottom-0 right-0 w-100 h-100 rounded-full blur-[140px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-600/5'
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -102,11 +102,11 @@ export default function TestimonialsSection() {
             <h2 className={`text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
               }`}>
               Trust of{' '}
-              <span className="bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">
                 Discerning Drivers
               </span>
             </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full my-4" />
+            <div className="h-1 w-20 bg-linear-to-r from-teal-500 to-teal-400 rounded-full my-4" />
 
             <p className={`mx-auto mt-4 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
               }`}>
@@ -123,11 +123,11 @@ export default function TestimonialsSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="relative overflow-hidden py-4"
         >
-          <div className={`pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r z-10 transition-colors duration-300 ${isLight
+          <div className={`pointer-events-none absolute inset-y-0 left-0 w-24 bg-linear-to-r z-10 transition-colors duration-300 ${isLight
               ? 'from-gray-50 via-gray-50/80 to-transparent'
               : 'from-[#050505] via-[#050505]/80 to-transparent'
             }`} />
-          <div className={`pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l z-10 transition-colors duration-300 ${isLight
+          <div className={`pointer-events-none absolute inset-y-0 right-0 w-24 bg-linear-to-l z-10 transition-colors duration-300 ${isLight
               ? 'from-gray-50 via-gray-50/80 to-transparent'
               : 'from-[#050505] via-[#050505]/80 to-transparent'
             }`} />
@@ -138,12 +138,12 @@ export default function TestimonialsSection() {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
-                className={`flex-shrink-0 rounded-2xl p-8 shadow-lg transition-all duration-300 flex min-w-[350px] max-w-[350px] flex-col justify-between ${isLight
+                className={`shrink-0 rounded-2xl p-8 shadow-lg transition-all duration-300 flex min-w-87.5 max-w-87.5 flex-col justify-between ${isLight
                     ? testimonial.featured
-                      ? 'bg-gradient-to-b from-white to-gray-50 border-2 border-teal-500/30 shadow-xl'
+                      ? 'bg-linear-to-b from-white to-gray-50 border-2 border-teal-500/30 shadow-xl'
                       : 'bg-white border border-gray-200'
                     : testimonial.featured
-                      ? 'bg-gradient-to-b from-[#111] to-black border border-teal-500/30 shadow-[0_0_30px_rgba(13,148,136,0.08)]'
+                      ? 'bg-linear-to-b from-[#111] to-black border border-teal-500/30 shadow-[0_0_30px_rgba(13,148,136,0.08)]'
                       : 'bg-zinc-950/40 border border-zinc-900'
                   }`}
               >
@@ -193,14 +193,14 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className={`relative mx-auto mt-28 max-w-5xl rounded-3xl p-8 shadow-2xl overflow-hidden px-8 py-20 text-center transition-colors duration-300 ${isLight
-              ? 'bg-gradient-to-b from-white to-gray-50 border border-gray-200'
-              : 'bg-gradient-to-b from-zinc-950 to-black border border-zinc-800'
+              ? 'bg-linear-to-b from-white to-gray-50 border border-gray-200'
+              : 'bg-linear-to-b from-zinc-950 to-black border border-zinc-800'
             }`}
         >
-          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-[130px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-600/10'
+          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-75 rounded-full blur-[130px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/20' : 'bg-teal-600/10'
             }`} />
 
-          <div className={`absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none ${isLight ? 'opacity-30' : 'opacity-100'
+          <div className={`absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-size-[3rem_3rem] pointer-events-none ${isLight ? 'opacity-30' : 'opacity-100'
             }`} />
 
           <span className={`relative z-10 text-xs font-bold uppercase tracking-[0.35em] block mb-4 transition-colors duration-300 ${isLight ? 'text-teal-600' : 'text-teal-500'
@@ -224,15 +224,15 @@ export default function TestimonialsSection() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className={`group relative overflow-hidden rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-lg ${isLight
-                    ? 'bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-teal-500/25'
-                    : 'bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-teal-500/25'
+                    ? 'bg-linear-to-r from-teal-600 to-teal-500 text-white shadow-teal-500/25'
+                    : 'bg-linear-to-r from-teal-600 to-teal-500 text-white shadow-teal-500/25'
                   }`}
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Start Your Journey
                   <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-teal-500 to-teal-400 transition-transform duration-300 ease-out" />
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-linear-to-r from-teal-500 to-teal-400 transition-transform duration-300 ease-out" />
               </motion.button>
             </Link>
 
