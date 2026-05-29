@@ -64,9 +64,9 @@ const ExplorePage = ({ search, setSearch }) => {
   return (
     <section className={`relative w-full px-6 py-20 md:px-12 lg:px-20 lg:py-28 overflow-hidden min-h-screen transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-[#050505]'
       }`}>
-      <div className={`absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
+      <div className={`absolute top-1/4 left-1/4 w-125 h-125 rounded-full blur-[130px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-teal-500/10' : 'bg-teal-500/5'
         }`} />
-      <div className={`absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
+      <div className={`absolute bottom-1/4 right-1/4 w-100 h-100 rounded-full blur-[120px] pointer-events-none transition-colors duration-300 ${isLight ? 'bg-purple-500/10' : 'bg-purple-500/5'
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -78,11 +78,11 @@ const ExplorePage = ({ search, setSearch }) => {
           <h2 className={`text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl transition-colors duration-300 ${isLight ? 'text-gray-900' : 'text-white'
             }`}>
             Our Premium{' '}
-            <span className="bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">
               Vehicles
             </span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full my-3" />
+          <div className="h-1 w-20 bg-linear-to-r from-teal-500 to-teal-400 rounded-full my-3" />
           <p className={`text-lg leading-relaxed font-light mt-4 transition-colors duration-300 ${isLight ? 'text-gray-600' : 'text-zinc-400'
             }`}>
             Experience the absolute zenith of precision automotive engineering. Every single vehicle in our curated
@@ -130,7 +130,7 @@ const ExplorePage = ({ search, setSearch }) => {
                         className="object-cover transition duration-700 group-hover:scale-110"
                         unoptimized
                       />
-                      <div className={`absolute inset-0 bg-gradient-to-t pointer-events-none ${isLight
+                      <div className={`absolute inset-0 bg-linear-to-t pointer-events-none ${isLight
                           ? 'from-white/80 via-white/10 to-transparent'
                           : 'from-black/80 via-black/10 to-transparent'
                         }`} />

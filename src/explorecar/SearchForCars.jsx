@@ -47,13 +47,12 @@ export default function FleetSearchBar({ search, setSearch }) {
     <section className={`w-full px-6 py-8 md:px-12 lg:px-20 transition-colors duration-300 ${isLight ? 'bg-gray-50' : 'bg-black'
       }`}>
       <div className="mx-auto max-w-7xl">
-        {/* Search Container */}
+        
         <div className={`flex flex-col gap-4 rounded-2xl border p-5 shadow-lg transition-all duration-300 lg:flex-row lg:items-center ${isLight
             ? 'border-gray-200 bg-white shadow-gray-200'
             : 'border-zinc-800 bg-[#121212] shadow-[0_0_60px_rgba(13,148,136,0.04)]'
           }`}>
 
-          {/* Search Input with Clear Button */}
           <div className="relative flex-1">
             <FaSearch className={`absolute left-5 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-300 ${isLight ? 'text-gray-400' : 'text-zinc-500'
               }`} />
@@ -70,7 +69,6 @@ export default function FleetSearchBar({ search, setSearch }) {
                 }`}
             />
 
-            {/* Clear Text Button - X */}
             {searchText && (
               <button
                 onClick={clearSearch}
@@ -85,8 +83,7 @@ export default function FleetSearchBar({ search, setSearch }) {
             )}
           </div>
 
-          {/* Category Select */}
-          <div className="relative w-full lg:w-[200px]">
+          <div className="relative w-full lg:w-50">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
@@ -106,14 +103,12 @@ export default function FleetSearchBar({ search, setSearch }) {
               ))}
             </select>
 
-            {/* Dropdown Arrow */}
             <div className={`pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-xs transition-colors duration-300 ${isLight ? 'text-gray-400' : 'text-zinc-400'
               }`}>
               ▼
             </div>
           </div>
 
-          {/* Search Button */}
           <button
             onClick={handleSearch}
             className={`h-14 rounded-xl px-6 text-sm font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 ${isLight
@@ -125,7 +120,6 @@ export default function FleetSearchBar({ search, setSearch }) {
           </button>
         </div>
 
-        {/* Popular Searches */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
           <span className={`text-xs transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-zinc-500'
             }`}>
@@ -149,7 +143,6 @@ export default function FleetSearchBar({ search, setSearch }) {
           ))}
         </div>
 
-        {/* Active Filters */}
         {(searchText || selectedCategory !== "All") && (
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <span className={`text-xs transition-colors duration-300 ${isLight ? 'text-gray-500' : 'text-zinc-500'

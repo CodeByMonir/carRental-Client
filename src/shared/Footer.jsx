@@ -62,13 +62,13 @@ export default function Footer() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={`relative w-full transition-colors duration-300 overflow-hidden ${isLight
-          ? "bg-gradient-to-b from-gray-50 to-white"
-          : "bg-gradient-to-b from-gray-950 to-black"
+          ? "bg-linear-to-b from-gray-50 to-white"
+          : "bg-linear-to-b from-gray-950 to-black"
         }`}
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-teal-500/50 to-transparent" />
 
-      <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? "bg-[radial-gradient(#0D9488_1px,transparent_1px)] [background-size:20px_20px]" : "bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"
+      <div className={`absolute inset-0 opacity-5 pointer-events-none ${isLight ? "bg-[radial-gradient(#0D9488_1px,transparent_1px)] bg-size-[40px_40px]" : "bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[40px_40px]"
         }`} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:px-10 lg:px-20">

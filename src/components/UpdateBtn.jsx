@@ -60,7 +60,7 @@ export default function UpdateCarModal({ car }) {
 
       {open && (
         <div className="fixed inset-0 mx-auto z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          {/* Modal Box */}
+          
           <div className="relative max-h-[95vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-orange-500/10 bg-[#0b0b0b] p-6 text-white shadow-[0_0_80px_rgba(249,115,22,0.15)] md:p-10 mb-20">
           
             <button
